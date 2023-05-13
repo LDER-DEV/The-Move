@@ -1,0 +1,39 @@
+<%- include('partials/header') -%>
+
+<main id="video-background">
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <img src="logo.png" alt="Logo">
+    </a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-collapse-1" aria-controls="navbar-collapse-1" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbar-collapse-1">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link btn btn-outline-light" href="/login"><span class="fa fa-user"></span> Login</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link btn btn-outline-light" href="/signup"><span class="fa fa-user"></span> Signup</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+    <div class="video-container">
+        <iframe src="https://www.youtube.com/embed/0y09sHXKmWM?autoplay=1&loop=1&mute=1&controls=0&playlist=0y09sHXKmWM" frameborder="0" allowfullscreen></iframe>
+      </div>
+      <div class="overlay"></div>
+      <div class="container indexCont">
+        <div class="row">
+          <div class="row-lg-8 logoWrapper">
+            <img class="indexLogo" src="img/Logo White.svg" alt="LOGO">
+          </div>
+</main>
+    
+
+<%- include('partials/footer') -%>
