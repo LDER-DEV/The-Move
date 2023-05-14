@@ -1,11 +1,11 @@
 const mongoose = require("mongoose");
 
 const MovesSchema = new mongoose.Schema({
-  title: {
+  eventTitle: {
     type: String,
     required: true,
   },
-  eventImage: {
+  image: {
     type: String,
     require: true,
   },
@@ -21,11 +21,26 @@ const MovesSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
   },
-  when: {
+  venueName: {
+    type: String,
+    required: true,
+  },
+  startDate: {
     type: Date,
     default: undefined
   },
-
+  startTime: {
+    type: String,
+    default: undefined
+  },
+  endDate: {
+    type: Date,
+    default: undefined
+  },
+  endTime: {
+    type: String,
+    default: undefined
+  },
 });
 
 module.exports = mongoose.model("Moves", MovesSchema);
