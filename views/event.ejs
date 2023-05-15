@@ -1,56 +1,67 @@
 <%- include('partials/header') -%>
-<div class="container">
-  <div class="row justify-content-center mt-5">
-    <div class="col-6">
-      <h2><%= post.title %></h2>
-      <img class="img-fluid" src="<%= post.image%>" />
-      <div class="row justify-content-between">
-        <form
-          class="col-1"
-          action="/post/likePost/<%= post.id %>?_method=PUT"
-          method="POST"
-        >
-          <button class="btn btn-primary fa fa-heart" type="submit"></button>
-        </form>
-        <h3 class="col-3">Likes: <%= post.likes %></h3>
-        <%if(post.user == user.id){ %>
-        <form
-          action="/post/deletePost/<%= post.id %>?_method=DELETE"
-          method="POST"
-          class="col-3"
-        >
-          <button class="btn btn-primary fa fa-trash" type="submit"></button>
-        </form>
-        <%}%>
+  <div class="container">
+    <div class="row justify-content-center mt-5">
+      <div class="col-6">
+        <h2>
+          <%= moves.title %>
+        </h2>
+        <img class="img-fluid" src="<%= moves.image%>" />
+        <div class="row justify-content-between">
+          <form class="col-1" action="/moves/approveMove/<%= moves.id %>?_method=PUT" method="POST">
+            <button class="btn btn-primary " type="submit">Approve</button>
+          </form>
+          <!-- <h3 class="col-3">Likes: <%= moves.likes %>
+          </h3> -->
+          <%if(moves.user==user.id){ %>
+            <form action="/moves/deletePost/<%= moves.id %>?_method=DELETE" method="POST" class="col-3">
+              <button class="btn btn-primary " type="submit">Delete</button>
+            </form>
+            <%}%>
+        </div>
       </div>
-    </div>
-    <div class="col-3 mt-5">
-      <p><%= post.caption %></p>
-    </div>
-    <% for(var i = 0; i < comments.length; i++)
-    { if(post.id == comments[i].postID) {%>
-    <h2><%= comments[i].comment %></h2>
+      <div class="col-3 mt-5">
+        <p>
+          <%= moves.description %>
+        </p>
+        <span> When: </span></br>
+        <p>
+          <%= moves.startDate %>
+        </p>
+        <p>
+          <%= moves.startTime %> - <%= moves.endTime %>
+        </p>
+        <span> Where: </span>
+        <a href="/profile/<%= moves.venueId %>"><span>
+            <%= moves.venueName %>
+          </span></a>
+      </div>
+      <% if(moves.ApprovalStatus==='false' ){%>
+        <span class="status">Awaiting Approval</span>
+        <%}else{ %>
+          <span class="status">Your Event is Approved!</span>
 
-    <form
-    action="/post/deleteComments/<%= comments.id %>?_method=DELETE"
-    method="POST"
-    class="col-3"
-  >
-    <button class="btn btn-primary fa fa-trash" type="submit"></button>
-  </form>
-    <%}  }%>
-    <form action="/post/comment/<%= post.id %>" method="POST">
-      <div class="mb-3">
-          <label for="title" class="form-label">comment</label>
-          <input type="text" class="form-control" id="comment" name="comment">
-          <button type="submit" class="btn btn-primary" value="Upload">Submit</button>
-      </div>
-    </form>
-    <div class="col-6 mt-5">
-      <a class="btn btn-primary" href="/profile">Return to Profile</a>
-      <a class="btn btn-primary" href="/feed">Return to Feed</a>
+          <% } %>
+            <% for(var i=0; i < moves.length; i++) { if(post.id==comments[i].postID) {%>
+              <h2>
+                <%= comments[i].comment %>
+              </h2>
+
+              <form action="/event/deletePost/<%= comments.id %>?_method=DELETE" method="POST" class="col-3">
+                <button class="btn btn-primary fa fa-trash" type="submit"></button>
+              </form>
+              <%} }%>
+                <form action="/moves/comment/<%= moves.id %>" method="POST">
+                  <div class="mb-3">
+                    <label for="title" class="form-label">comment</label>
+                    <input type="text" class="form-control" id="comment" name="comment">
+                    <button type="submit" class="btn btn-primary" value="Upload">Submit</button>
+                  </div>
+                </form>
+                <div class="col-6 mt-5">
+                  <a class="btn btn-primary" href="/profile">Return to Profile</a>
+                  <a class="btn btn-primary" href="/feed">Return to Feed</a>
+                </div>
     </div>
   </div>
-</div>
 
-<%- include('partials/footer') -%>
+  <%- include('partials/footer') -%>

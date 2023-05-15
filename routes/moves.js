@@ -13,7 +13,7 @@ router.post("/createPost", upload.single("file"), movesController.createPost);
 
 router.post("/addTrack", upload.single("songFile"), movesController.createTrack);
 
-router.put("/likePost/:id", movesController.likePost);
+router.put("/approveMove/:id", movesController.approveMove);
 
 router.delete("/deletePost/:id", movesController.deletePost);
 

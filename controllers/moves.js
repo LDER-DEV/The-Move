@@ -24,9 +24,9 @@ module.exports = {
   },
   getPost: async (req, res) => {
     try {
-      const post = await Moves.findById(req.params.id);
+      const moves = await Moves.findById(req.params.id);
       const comment = await Comments.find().sort({ createdAt: "desc" }).lean();
-      res.render("event.ejs", { post: post, user: req.user, comments: comment});
+      res.render("event.ejs", { moves: moves, user: req.user, comments: comment});
     } catch (err) {
       console.log(err);
     }
@@ -41,7 +41,8 @@ module.exports = {
         image: result.secure_url,
         cloudinaryId: result.public_id,
         description: req.body.description,
-        user: req.user.id,
+        user: req.user._id,
+        venueId: req.body.venueId,
         venueName: req.body.venueName,
         startDate: req.body.startDate,
         startTime: req.body.startTime,
@@ -71,15 +72,15 @@ module.exports = {
       console.log(err);
     }
   },
-  likePost: async (req, res) => {
+  approveMove: async (req, res) => {
     try {
       await Moves.findOneAndUpdate(
         { _id: req.params.id },
         {
-          $inc: { likes: 1 },
+          $set: { ApprovalStatus: true },
         }
       );
-      console.log("Likes +1");
+      console.log("your event is approved!");
       res.redirect(`/event/${req.params.id}`);
     } catch (err) {
       console.log(err);
@@ -90,13 +91,13 @@ module.exports = {
       // Find post by id
       let moves = await Moves.findById({ _id: req.params.id });
       // Delete image from cloudinary
-      await cloudinary.uploader.destroy(post.cloudinaryId);
+      await cloudinary.uploader.destroy(moves.cloudinaryId);
       // Delete post from db
       await Moves.remove({ _id: req.params.id });
       console.log("Deleted Post");
-      res.redirect("/profile");
+      res.redirect(`/profile/${req.user._id}`);
     } catch (err) {
-      res.redirect("/profile");
+      res.redirect(`/profile/${req.user._id}`);
     }
   },
   commentPost: async (req, res) => {

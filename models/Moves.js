@@ -21,6 +21,10 @@ const MovesSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
   },
+  venueId: {
+    type: String,
+    required: true,
+  },
   venueName: {
     type: String,
     required: true,
@@ -40,6 +44,10 @@ const MovesSchema = new mongoose.Schema({
   endTime: {
     type: String,
     default: undefined
+  },
+  ApprovalStatus: {
+    type: Boolean,
+    default: false
   },
 });
 
