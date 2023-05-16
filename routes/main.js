@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const authController = require("../controllers/auth");
 const homeController = require("../controllers/home");
+const upload = require("../middleware/multer");
 const movesController = require("../controllers/moves");
 const { ensureAuth, ensureGuest } = require("../middleware/auth");
 
@@ -14,5 +15,6 @@ router.post("/login", authController.postLogin);
 router.get("/profile/:id", ensureAuth, movesController.getProfile);
 router.get("/venues", ensureAuth, movesController.getVenues);
 router.get("/logout", authController.logout);
+router.put("/editProfile/:id", upload.array("imageFiles", 2), movesController.editProfile);
 
 module.exports = router;

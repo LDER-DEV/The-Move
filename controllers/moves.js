@@ -22,6 +22,33 @@ module.exports = {
       console.log(err);
     }
   },
+  editProfile: async (req, res) => {
+    try {
+        // Upload images to cloudinary
+        const results = [];
+
+        for (const file of req.files) {
+          const result = await cloudinary.uploader.upload(file.path, { resource_type: "auto" });
+          results.push(result);
+        }
+             console.log(results)
+      await Profile.findOneAndUpdate(
+        { _id: req.params.id },
+        {
+          $set: { 
+            profilePicture: results[0].secure_url,
+            bannerPicture: results[1].secure_url,
+            bio: req.body.bio
+            
+           },
+        }
+      );
+      console.log("Likes +1");
+      res.redirect(`/post/${req.params.id}`);
+    } catch (err) {
+      console.log(err);
+    }
+  },
   getPost: async (req, res) => {
     try {
       const moves = await Moves.findById(req.params.id);
@@ -72,6 +99,7 @@ module.exports = {
       console.log(err);
     }
   },
+  
   approveMove: async (req, res) => {
     try {
       await Moves.findOneAndUpdate(
@@ -126,4 +154,6 @@ module.exports = {
       res.redirect(`/event/${req.params.id}`);
     }
   },
+
+
 };

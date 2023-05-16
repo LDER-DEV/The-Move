@@ -15,22 +15,20 @@
             </div>
             <div class="modal-body">
 <!-- update form starts -->
-              <h2>Upload a Song</h2>
-              <form action="/moves/addTrack" enctype="multipart/form-data" method="POST">
-                <div class="mb-3">
-                  <label for="trackName" class="form-label">Song Title</label>
-                  <input type="text" class="form-control" id="trackName" name="trackName">
-                </div>
-                <div class="mb-3">
-                  <input class="hidden" type="text" class="form-control" id="uploadedBy" name="uploadedBy"
-                    value="<%= profile.userName %>">
-                </div>
-                <div class="mb-3">
-                  <label for="songUpload" class="form-label">Please upload your Songs</label>
-                  <input type="file" class="form-control" id="songUpload" name="songFile">
-                </div>
-                <button type="submit" class="btn btn-primary" value="Upload">Submit</button>
-              </form>
+<form action="/editProfile/<%= profile.id %>?_method=PUT" enctype="multipart/form-data" method="POST">
+  <div class="mb-3">
+    <label for="profilePic" class="form-label">Profile Picture</label>
+    <input type="file" class="form-control" id="profilePic" name="imageFiles" accept="image/*" multiple>
+  </div>
+  <div class="mb-3">
+    <label for="bannerPic" class="form-label">Banner Picture</label>
+    <input type="file" class="form-control" id="bannerPic" name="imageFiles" accept="image/*" multiple>
+  </div>
+  <div class="mb-3">
+    <input  type="text" class="form-control" id="biography" name="bio" placeholder="Edit your bio here">
+  </div>
+  <button type="submit" class="btn btn-primary" value="Upload">Submit</button>
+</form>
 <!-- update form ends -->
             </div>
             <div class="modal-footer">
@@ -53,12 +51,13 @@
                 <img class="img-fluid profileImage" src="<%= profile.profilePicture %>">
               </div>
               <h1><%= profile.userName %></h1>
-                     <p><strong>Email</strong>: <%= profile.email %>
+                     <p><strong>Contact Email</strong>: <%= profile.email %>
             </div>
-            <%if(profile.user)%>
+            <%if(profile.id === user.id){%>
             <button type ="button" class= "editButton btn btn-primary" data-toggle="modal" data-target="#editModal">
             <i class="fa-solid fa-gear " style="color: #000000;" ></i>
             </button>
+            <% } %>
             <div class="mt-5">
               <% if (profile.isVenue==='Yes' ) { %>
 
