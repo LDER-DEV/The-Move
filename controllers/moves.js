@@ -17,7 +17,16 @@ module.exports = {
   getVenues: async (req, res) => {
     try {
       const venues = await Profile.find().sort({ createdAt: "desc" }).lean();
-      res.render("venues.ejs", { venues: venues, user: req.user });
+      res.render("Venues.ejs", { venues: venues, user: req.user });
+    } catch (err) {
+      console.log(err);
+    }
+  },
+  getMoves: async (req, res) => {
+    try {
+      const moves = await Moves.find().sort({ createdAt: "desc" }).lean();
+      const venues = await Profile.find().sort({ createdAt: "desc" }).lean();
+      res.render("Moves.ejs", { moves: moves, venues:venues, user: req.user });
     } catch (err) {
       console.log(err);
     }
@@ -39,7 +48,7 @@ module.exports = {
             profilePicture: results[0].secure_url,
             bannerPicture: results[1].secure_url,
             bio: req.body.bio
-            
+
            },
         }
       );

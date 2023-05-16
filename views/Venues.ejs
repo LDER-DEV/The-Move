@@ -1,47 +1,55 @@
 <%- include('partials/header') -%>
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-  <div class="container">
-    <a class="navbar-brand" href="/">
-      <!-- <img src="img/Logo White.svg" class="navLogo" alt="Logo"> -->
-    </a>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="/">
+        <!-- <img src="img/Logo White.svg" class="navLogo" alt="Logo"> -->
+      </a>
 
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-collapse-1" aria-controls="navbar-collapse-1" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-collapse-1"
+        aria-controls="navbar-collapse-1" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-    <div class="collapse navbar-collapse" id="navbar-collapse-1">
-      <ul class="navbar-nav ms-auto">
-        <li class="nav-item">
-          <a class="nav-link btn btn-outline-light" href="/">Home</a>
-        </li>
-      
-        <li class="nav-item">
-          <a class="nav-link btn btn-outline-light" href="/profile/<%= venues._id%>">Profile</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link btn btn-outline-light" href="/venues">Venues</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link btn btn-outline-light" href="/upcomingMoves">Moves</a>
-        </li>
-      </ul>
+      <div class="collapse navbar-collapse" id="navbar-collapse-1">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link btn btn-outline-light" href="/">Home</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link btn btn-outline-light" href="/profile/<%= user.id%>">Profile</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link btn btn-outline-light" href="/venues">Venues</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link btn btn-outline-light" href="/upcomingMoves">Moves</a>
+          </li>
+        </ul>
+      </div>
     </div>
-  </div>
-</nav>
+  </nav>
 
   <div class="container">
     <h1>Venues</h1>
     <div class="row justify-content-center mt-5">
       <ul class="row list-unstyled">
-        <% for(var i=0; i < venues.length; i++){
-         if( venues[i].isVenue === 'Yes') {%>
-          <li class="col-6 justify-content-between mt-5">
-            <a href="/profile/<%= venues[i]._id%>">
-              <img class="img-fluid" src="<%= venues[i].bannerPicture%>">
-            </a>
-          </li>
-        <% } }%>
-        </ul>
+        <% for(var i=0; i < venues.length; i++){ if( venues[i].isVenue==='Yes' ) {%>
+          <section class="bannerVenues">
+            <li class="col-6 justify-content-between mt-5">
+              <h2>
+                <%= venues[i].userName%>
+              </h2>
+              <a href="/profile/<%= venues[i]._id%>">
+                <img class="img-fluid profileBanner" src="<%= venues[i].bannerPicture%>">
+              </a>
+            </li>
+                  <!-- map test -->
+    
+                <!-- map test end -->
+          </section>
+          <% } }%>
+      </ul>
     </div>
-  </div>  
-<%- include('partials/footer') -%>
+  </div>
+  <%- include('partials/footer') -%>

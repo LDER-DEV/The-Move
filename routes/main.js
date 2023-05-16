@@ -14,6 +14,7 @@ router.get("/login", authController.getLogin);
 router.post("/login", authController.postLogin);
 router.get("/profile/:id", ensureAuth, movesController.getProfile);
 router.get("/venues", ensureAuth, movesController.getVenues);
+router.get("/upcomingMoves", ensureAuth, movesController.getMoves);
 router.get("/logout", authController.logout);
 router.put("/editProfile/:id", upload.array("imageFiles", 2), movesController.editProfile);
 

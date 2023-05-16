@@ -163,7 +163,17 @@ background: rgba(0, 0, 0, 0.415);
   height: 100%;
   object-fit: cover; /* Scale the image to cover its container */
 }
-
+.bannerVenues{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+  background: url(../img/the\ move\ bg.png);
+  height: 300px;
+  position: relative;
+  overflow: hidden;
+  margin-top: 25px;
+}
 /* user profile styling */
 .eventImage{
   border-radius:25px;

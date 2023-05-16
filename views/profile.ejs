@@ -111,11 +111,13 @@
                   </h2>
                   <span> When: </span></br>
                   <span>
-                    <%= moves[i].startDate %>
+                    <%= moves[i].startDate.toString().substring(0,15)
+
+                    %>
                   </span>
-                  <span>
+                  <p>
                     <%= moves.startTime %> - <%= moves.endTime %>
-                  </span>
+                  </p>
                   <span> Where: </span></br>
                   <a href="/profile/<%= moves[i].venueId %>"><span>
                       <%= moves[i].venueName %>
