@@ -102,8 +102,9 @@
             <ul class="row list-unstyled">
 
               <% for(var i=0; i< moves.length; i++) {%>
-                <li class="col-6 justify-content-between mt-5">
-                  <a href="/moves/<%= moves[i]._id%>">
+                <section class ='moveContainer'>
+                <li class="col-6 justify-content-between mt-5 ">
+                  <a class="event" href="/moves/<%= moves[i]._id%>">
                     <img class="img-fluid eventImage" src="<%= moves[i].image%>">
                   </a>
                   <h2>
@@ -122,6 +123,7 @@
                   <a href="/profile/<%= moves[i].venueId %>"><span>
                       <%= moves[i].venueName %>
                 </li></a>
+              </section>
                 <% if(moves[i].ApprovalStatus==='false'){%>
                   <span class="status">Awaiting Approval</span>
                   <%}else{ %>
@@ -137,6 +139,7 @@
 
             <div class="mt-5">
               <% if (profile.isVenue==='No' ) { %>
+                <%- include('partials/profilePlayer') -%>
                 <h2>Upload a Song</h2>
                 <form action="/moves/addTrack" enctype="multipart/form-data" method="POST">
                   <div class="mb-3">

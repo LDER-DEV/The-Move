@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /* testing css */
 .profileBg {
   height: 100%;
@@ -32,6 +33,36 @@
       400px 0;
     }
   }
+/* event highlight */
+
+.event::before,
+.event::after {
+ content: '';
+ position: fixed;
+ top: 0;
+ width: 0;
+ height: 100%;
+ transform: skew(15deg);
+ transition: all 0.5s;
+ overflow: hidden;
+ z-index: -1;
+}
+
+.event::before {
+ left: -10px;
+ background: #463e0066;
+}
+
+.event::after {
+ right: -10px;
+ background: #9a681884;
+}
+
+.event:hover::before,
+.event:hover::after {
+ width: 58%;
+}
+/* highlight ends */
 /* testing css ends */
 
 .navLogo{
@@ -181,11 +212,74 @@ background: rgba(0, 0, 0, 0.415);
 .profileImage{
   border-radius:100%;
 }
+/* profile music player styling */
+.player-container{
+  display:flex;
+  position: relative;
+  z-index: 10;
+  padding:20px 30px;
+  height:50px;
+  background-color:black;
+  border-radius:15px;
+  box-shadow:0 20px 20px 0 rgba(117, 125, 33, 0.174);
+  color:white;
+
+}
+.player-container.play .track-info{
+  opacity:1;
+  transform: translateY(-100%);
+}
+.navigation{
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+}
+.action-btn{
+  background-color:black;
+  border:none;
+  font-size:20px;
+  cursor:pointer;
+  
+}
+.track-info{
+  background-color: #000000;
+  color:white;
+  position: absolute;
+  top:0;
+  left:20px;
+  width:75%;
+  /* width: calc(100%-40px); */
+  border-radius:15px 15px 0 0;
+  transform: translateY(0%);
+  opacity:0;
+  transition: transform 0.3s ease-in, opacity 0.3s ease-in;
+}
+.track-info h4{
+margin:0
+};
+.progressContainer {
+  background:rgb(255, 255, 255);
+  border-radius:5px;
+  cursor:pointer;
+  margin:10px 0;
+  height:5px;
+  width:100%;
+  z-index: 1;
+}
+.progBar{
+  background-color: #00ff04;
+  border: 1px solid white;
+  border-radius: 2px;
+  height: 10px;
+  width: 0%;
+  position: absolute;
+  transition: width 0.1s linear;
+  transform: translateY(-70%);
+}
+/* profile player styling end */
 
 
-
-  /* bootstrap css */
-  @charset "UTF-8";
 /*!
  * Bootstrap  v5.3.0-alpha3 (https://getbootstrap.com/)
  * Copyright 2011-2023 The Bootstrap Authors
