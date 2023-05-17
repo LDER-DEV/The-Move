@@ -16,6 +16,8 @@ router.get("/profile/:id", ensureAuth, movesController.getProfile);
 router.get("/venues", ensureAuth, movesController.getVenues);
 router.get("/upcomingMoves", ensureAuth, movesController.getMoves);
 router.get("/logout", authController.logout);
-router.put("/editProfile/:id", upload.array("imageFiles", 2), movesController.editProfile);
+router.put("/editProfile/:id", upload.single("imageFiles"), movesController.editProfile);
+router.put("/editBanner/:id", upload.single("imageFiles"), movesController.editBanner);
+
 
 module.exports = router;

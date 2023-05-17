@@ -33,36 +33,49 @@ module.exports = {
   },
   editProfile: async (req, res) => {
     try {
-        // Upload images to cloudinary
-        const results = [];
-
-        for (const file of req.files) {
-          const result = await cloudinary.uploader.upload(file.path, { resource_type: "auto" });
-          results.push(result);
-        }
-             console.log(results)
+     
+        const result = await cloudinary.uploader.upload(req.file.path, {resource_type: "auto",  });
+             console.log(result)
       await Profile.findOneAndUpdate(
         { _id: req.params.id },
         {
           $set: { 
-            profilePicture: results[0].secure_url,
-            bannerPicture: results[1].secure_url,
+            profilePicture: result.secure_url,
             bio: req.body.bio
 
            },
         }
       );
-      console.log("Likes +1");
-      res.redirect(`/post/${req.params.id}`);
+      console.log("profile updated");
+      res.redirect(`/profile/${req.params.id}`);
     } catch (err) {
       console.log(err);
     }
   },
-  getPost: async (req, res) => {
+  editBanner: async (req, res) => {
     try {
+
+        const result = await cloudinary.uploader.upload(req.file.path, {resource_type: "auto",  });
+             console.log(result)
+      await Profile.findOneAndUpdate(
+        { _id: req.params.id },
+        {
+          $set: { 
+            bannerPicture: result.secure_url,
+           },
+        }
+      );
+      console.log("profile updated");
+      res.redirect(`/profile/${req.params.id}`);
+    } catch (err) {
+      console.log(err);
+    }
+  },
+  getEvent: async (req, res) => {
+    try {
+      const artists = await Profile.find().sort({ createdAt: "desc" }).lean();
       const moves = await Moves.findById(req.params.id);
-      const comment = await Comments.find().sort({ createdAt: "desc" }).lean();
-      res.render("event.ejs", { moves: moves, user: req.user, comments: comment});
+      res.render("event.ejs", { moves: moves, user: req.user,artists:artists });
     } catch (err) {
       console.log(err);
     }
@@ -77,7 +90,8 @@ module.exports = {
         image: result.secure_url,
         cloudinaryId: result.public_id,
         description: req.body.description,
-        user: req.user._id,
+        artists: req.body.artists,
+        user: req.user.id,
         venueId: req.body.venueId,
         venueName: req.body.venueName,
         startDate: req.body.startDate,

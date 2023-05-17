@@ -33,6 +33,9 @@
       400px 0;
     }
   }
+html{
+  cursor: url('../img/cursor.png'), auto;
+}
 /* event highlight */
 
 .event::before,
@@ -50,12 +53,12 @@
 
 .event::before {
  left: -10px;
- background: #463e0066;
+ background: #ffe943b0;
 }
 
 .event::after {
  right: -10px;
- background: #9a681884;
+ background: #b8af3d84;
 }
 
 .event:hover::before,
@@ -81,9 +84,11 @@ body{
 .container{
   border:1px solid black;
   border-radius:25px;
+
 }
 .profileCont{
-  background:white;
+  background:rgba(0, 0, 0, 0.919);
+  color:white;
 }
 
 .banner {
@@ -209,8 +214,22 @@ background: rgba(0, 0, 0, 0.415);
 .eventImage{
   border-radius:25px;
 }
-.profileImage{
-  border-radius:100%;
+.eventImage:hover{
+  border: 2px solid white;
+}
+.imageContainer {
+  width: 300px; 
+  height: 300px; 
+  border-radius: 50%;
+  border: #ffe943b0 double 10px;
+
+  overflow: hidden; 
+}
+
+.profileImage {
+  width: 100%; /* Make the image fill its container */
+  height: 100%; /* Make the image fill its container */
+  object-fit: cover;
 }
 /* profile music player styling */
 .player-container{

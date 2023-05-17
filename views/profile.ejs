@@ -2,43 +2,8 @@
   <%- include('partials/profileNav') -%>
 
     <body class="profileBg">
+
       
-      <!-- profile edit modal start -->
-      <div class="modal fade" id="editModal" tabindex="-1" role="dialog" >
-        <div class="modal-dialog modal-dialog-centered" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="editModalTitle">Edit your profile</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-<!-- update form starts -->
-<form action="/editProfile/<%= profile.id %>?_method=PUT" enctype="multipart/form-data" method="POST">
-  <div class="mb-3">
-    <label for="profilePic" class="form-label">Profile Picture</label>
-    <input type="file" class="form-control" id="profilePic" name="imageFiles" accept="image/*" multiple>
-  </div>
-  <div class="mb-3">
-    <label for="bannerPic" class="form-label">Banner Picture</label>
-    <input type="file" class="form-control" id="bannerPic" name="imageFiles" accept="image/*" multiple>
-  </div>
-  <div class="mb-3">
-    <input  type="text" class="form-control" id="biography" name="bio" placeholder="Edit your bio here">
-  </div>
-  <button type="submit" class="btn btn-primary" value="Upload">Submit</button>
-</form>
-<!-- update form ends -->
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" id="modalClose" data-dismiss="modal">Close</button>
-              <button type="submit" class="btn btn-primary">Save changes</button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- modal end -->
       <div class="container profileCont">
         <section class="banner">
           <img class="img-fluid profileBanner" src="<%= profile.bannerPicture %>">
@@ -47,84 +12,98 @@
         <div class="row mt-5">
           <div class="col-6">
             <div>
-              <div class="col-2 justify-content-between mt-5">
-                <img class="img-fluid profileImage" src="<%= profile.profilePicture %>">
+
+              <div class="row-4 justify-content-between mt-5">
+                <div class= "imageContainer">
+                  <img class="img-fluid profileImage" src="<%= profile.profilePicture %>">
+                </div>
               </div>
-              <h1><%= profile.userName %></h1>
-                     <p><strong>Contact Email</strong>: <%= profile.email %>
+              <h1>
+                <%= profile.userName %>
+              </h1>
+              <h3>
+                <%= profile.bio %>
+              </h3>
+              <h4><strong>Contact Email</strong>: <%= profile.email %>
+              </h4>
             </div>
-            <%if(profile.id === user.id){%>
-            <button type ="button" class= "editButton btn btn-primary" data-toggle="modal" data-target="#editModal">
-            <i class="fa-solid fa-gear " style="color: #000000;" ></i>
-            </button>
-            <% } %>
             <div class="mt-5">
-              <% if (profile.isVenue==='Yes' ) { %>
-
-                <h2>Add a post</h2>
-                <form action="/moves/createPost" enctype="multipart/form-data" method="POST">
-                  <div class="mb-3">
-                    <label for="title" class="form-label">Title</label>
-                    <input type="text" class="form-control" id="eventTitle" name="eventTitle">
-                  </div>
-                  <div class="mb-3">
-                    <input type="text" class="hidden" id="venueName" name="venueName" value="<%= profile.userName %>">
-                  </div>
-                  <div class="mb-3">
-                    <input type="text" class="hidden" id="venueId" name="venueId" value="<%= profile.id %>">
-                  </div>
-                  <div class="mb-3">
-                    <label for="description" class="form-label">Event Description</label>
-                    <textarea class="form-control" id="description" name="description"></textarea>
-                  </div>
-                  <div class="mb-3">
-                    <label for="imgUpload" class="form-label">Image</label>
-                    <input type="file" class="form-control" id="imageUpload" name="file">
-                  </div>
-                  <div class="mb-3">
-                    <label for="startDateTime" class="form-label">Event Start Date and Time</label>
-                    <input type="date" class="form-control" id="startDate" name="startDate">
-                    <input type="time" class="form-control" id="startTime" name="startTime">
-                  </div>
-
-                  <div class="mb-3">
-                    <label for="endDateTime" class="form-label">Event End Date and Time</label>
-                    <input type="date" class="form-control" id="endDate" name="endDate">
-                    <input type="time" class="form-control" id="endTime" name="endTime">
-                  </div>
-
-                  <button type="submit" class="btn btn-primary" value="Upload">Submit</button>
-                </form>
+              <%if(profile.id===user.id){%>
+                <button type="button" class="editButton btn btn-primary" data-toggle="modal" data-target="#editModal">
+                  <i class="fa-solid fa-gear " style="color: #000000;"></i>
+                </button>
                 <% } %>
+                  <% if (profile.isVenue==='Yes' ) { %>
+
+                    <h2>Submit an event</h2>
+                    <form action="/moves/createPost" enctype="multipart/form-data" method="POST">
+                      <div class="mb-3">
+                        <label for="title" class="form-label">Title</label>
+                        <input type="text" class="form-control" id="eventTitle" name="eventTitle">
+                      </div>
+                      <div class="mb-3">
+                        <input type="text" class="hidden" id="venueName" name="venueName"
+                          value="<%= profile.userName %>">
+                      </div>
+                      <div class="mb-3">
+                        <input type="text" class="hidden" id="venueId" name="venueId" value="<%= profile.id %>">
+                      </div>
+                      <div class="mb-3">
+                        <label for="description" class="form-label">Event Description</label>
+                        <textarea class="form-control" id="description" name="description"></textarea>
+                      </div>
+                      <div class="mb-3">
+                        <label for="artists" class="form-label">Featured Artists</label>
+                        <input type="text" class="form-control" id="artists" name="artists">
+                      </div>
+                      <div class="mb-3">
+                        <label for="imgUpload" class="form-label">Image</label>
+                        <input type="file" class="form-control" id="imageUpload" name="file">
+                      </div>
+                      <div class="mb-3">
+                        <label for="startDateTime" class="form-label">Event Start Date and Time</label>
+                        <input type="date" class="form-control" id="startDate" name="startDate">
+                        <input type="time" class="form-control" id="startTime" name="startTime">
+                      </div>
+
+                      <div class="mb-3">
+                        <label for="endDateTime" class="form-label">Event End Date and Time</label>
+                        <input type="date" class="form-control" id="endDate" name="endDate">
+                        <input type="time" class="form-control" id="endTime" name="endTime">
+                      </div>
+
+                      <button type="submit" class="btn btn-primary" value="Upload">Submit</button>
+                    </form>
+                    <% } %>
             </div>
           </div>
           <div class="col-6">
             <ul class="row list-unstyled">
 
-              <% for(var i=0; i< moves.length; i++) {%>
-                <section class ='moveContainer'>
-                <li class="col-6 justify-content-between mt-5 ">
-                  <a class="event" href="/moves/<%= moves[i]._id%>">
-                    <img class="img-fluid eventImage" src="<%= moves[i].image%>">
-                  </a>
-                  <h2>
-                    <%= moves[i].eventTitle %>
-                  </h2>
-                  <span> When: </span></br>
-                  <span>
-                    <%= moves[i].startDate.toString().substring(0,15)
-
-                    %>
-                  </span>
-                  <p>
-                    <%= moves.startTime %> - <%= moves.endTime %>
-                  </p>
-                  <span> Where: </span></br>
-                  <a href="/profile/<%= moves[i].venueId %>"><span>
-                      <%= moves[i].venueName %>
-                </li></a>
-              </section>
-                <% if(moves[i].ApprovalStatus==='false'){%>
+              <% for(var i=0; i < moves.length; i++) {%>
+                <section class='moveContainer'>
+                  <li class="col-6 justify-content-between mt-5 ">
+                    <a class="event" href="/moves/<%= moves[i]._id%>">
+                      <img class="img-fluid eventImage" src="<%= moves[i].image%>">
+                    </a>
+                    <h2>
+                      <%= moves[i].eventTitle %>
+                    </h2>
+                    <span> When: </span></br>
+                    <span>
+                      <%= moves[i].startDate.toString().substring(0,15) %>
+                    </span>
+                    <p>
+                      <%= moves[i].startTime %>
+                        <%= moves[i].endTime %>
+                    </p>
+                    <p><%=moves[i].artists%></p>
+                    <span> Where: </span></br>
+                    <a href="/profile/<%= moves[i].venueId %>"><span>
+                        <%= moves[i].venueName %>
+                  </li></a>
+                </section>
+                <% if(moves[i].ApprovalStatus==='false' ){%>
                   <span class="status">Awaiting Approval</span>
                   <%}else{ %>
                     <span class="status">Your Event is Approved!</span>
@@ -139,7 +118,9 @@
 
             <div class="mt-5">
               <% if (profile.isVenue==='No' ) { %>
-                <%- include('partials/profilePlayer') -%>
+                <div>
+                  <%- include('partials/profilePlayer') -%>
+                </div>
                 <h2>Upload a Song</h2>
                 <form action="/moves/addTrack" enctype="multipart/form-data" method="POST">
                   <div class="mb-3">
@@ -162,7 +143,72 @@
         </div>
       </div>
       </div>
+    <!-- profile edit modal start -->
+ <div class="modal fade" id="Modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="ModalTitle">Edit your profile</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <!-- update form starts -->
+        <form action="/editProfile/<%= profile.id %>?_method=PUT" enctype="multipart/form-data" method="POST">
+          <div class="mb-3">
+            <label for="profilePic" class="form-label">Profile Picture</label>
+            <input type="file" class="form-control" id="profilePic" name="imageFiles" accept="image/*" >
+          </div>
+          <div class="mb-3">
+            <input type="text" class="form-control" id="biography" name="bio"  value="<%=profile.bio%>">
+          </div>
+          <button type="submit" class="btn btn-primary" value="Upload">Submit</button>
+        </form>
+        <!-- update form ends -->
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" id="modalClose" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- modal end -->
+
+
+ <!-- profile edit modal start -->
+ <div class="modal fade" id="editModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editModalTitle">Edit your profile</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <!-- update form starts -->
+        <form action="/editBanner/<%= profile.id %>?_method=PUT" enctype="multipart/form-data" method="POST">
+          
+          <div class="mb-3">
+            <label for="bannerPic" class="form-label">Banner Picture</label>
+            <input type="file" class="form-control" id="bannerPic" name="imageFiles" accept="image/*" >
+          </div>
+        
+          <button type="submit" class="btn btn-primary" value="Upload">Submit</button>
+        </form>
+        <!-- update form ends -->
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" id="modalClose" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- modal end -->
       <script src="/main.js"></script>
     </body>
-    
+
     <%- include('partials/footer') -%>

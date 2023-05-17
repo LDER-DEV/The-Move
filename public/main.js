@@ -4,14 +4,19 @@ const player = document.querySelector('.player-container')
 const progressContainer = document.querySelector('.progressContainer')
 const progressBar = document.querySelector('.progBar')
 const audio = document.querySelector('#audio')
-
+const banner = document.querySelector('.profileBanner')
 const backBtn = document.querySelector('#prev')
 const playBtn = document.querySelector('#play')
 const forwardBtn = document.querySelector('#next')
 
 
-
+//Modal
 function editProfile() {
+  const editModal = document.getElementById('Modal');
+  const modalObj = new bootstrap.Modal(editModal);
+  modalObj.show();
+}
+function editBanner() {
   const editModal = document.getElementById('editModal');
   const modalObj = new bootstrap.Modal(editModal);
   modalObj.show();
@@ -47,6 +52,7 @@ progressBar.style.width = `${progressPercent}%`
 }
 
 editButton.addEventListener('click', editProfile)
+banner.addEventListener('click',editBanner)
 //play song
 playBtn.addEventListener('click', () => {
   const isPlaying = player.classList.contains('play')
