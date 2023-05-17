@@ -15,6 +15,8 @@ router.post("/addTrack", upload.single("songFile"), movesController.createTrack)
 
 router.put("/approveMove/:id", movesController.approveMove);
 
+router.put("/denyMove/:id", movesController.denyMove);
+
 router.delete("/deletePost/:id", movesController.deletePost);
 
 router.delete("/deleteComment/:id", movesController.deleteComment);

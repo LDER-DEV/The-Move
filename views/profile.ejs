@@ -32,7 +32,12 @@
                 <button type="button" class="editButton btn btn-primary" data-toggle="modal" data-target="#editModal">
                   <i class="fa-solid fa-gear " style="color: #000000;"></i>
                 </button>
-                <% } %>
+                <% }else{ %>
+
+                  <button type="button" class="editButton invisible btn btn-primary" data-toggle="modal" data-target="#editModal">
+                    <i class="fa-solid fa-gear " style="color: #000000;"></i>
+                  </button>
+                  <%}%>
                   <% if (profile.isVenue==='Yes' ) { %>
 
                     <h2>Submit an event</h2>
@@ -79,8 +84,13 @@
           </div>
           <div class="col-6">
             <ul class="row list-unstyled">
-
-              <% for(var i=0; i < moves.length; i++) {%>
+            
+              <% for(var i=0; i < moves.length; i++){
+                
+                if(moves[i].venueName === profile.userName||moves[i].artists.includes(profile.userName))
+               
+                {%>
+            
                 <section class='moveContainer'>
                   <li class="col-6 justify-content-between mt-5 ">
                     <a class="event" href="/moves/<%= moves[i]._id%>">
@@ -103,14 +113,13 @@
                         <%= moves[i].venueName %>
                   </li></a>
                 </section>
-                <% if(moves[i].ApprovalStatus==='false' ){%>
+                <% if(moves[i].ApprovalStatus === false ){%>
                   <span class="status">Awaiting Approval</span>
                   <%}else{ %>
                     <span class="status">Your Event is Approved!</span>
-
                     <% } %>
-
-                      <% } %>
+                    
+                      <% }}%>
 
             </ul>
           </div>

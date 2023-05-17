@@ -75,7 +75,7 @@ module.exports = {
     try {
       const artists = await Profile.find().sort({ createdAt: "desc" }).lean();
       const moves = await Moves.findById(req.params.id);
-      res.render("event.ejs", { moves: moves, user: req.user,artists:artists });
+      res.render("event.ejs", { moves: moves, user: req.user,artists: artists });
     } catch (err) {
       console.log(err);
     }
@@ -128,11 +128,25 @@ module.exports = {
       await Moves.findOneAndUpdate(
         { _id: req.params.id },
         {
-          $set: { ApprovalStatus: true },
+          $set: { ApprovalStatus: 'true' },
         }
       );
       console.log("your event is approved!");
-      res.redirect(`/event/${req.params.id}`);
+      res.redirect(`/moves/${req.params.id}`);
+    } catch (err) {
+      console.log(err);
+    }
+  },
+  denyMove: async (req, res) => {
+    try {
+      await Moves.findOneAndUpdate(
+        { _id: req.params.id },
+        {
+          $set: { ApprovalStatus: 'false' },
+        }
+      );
+      console.log("your event is approved!");
+      res.redirect(`/moves/${req.params.id}`);
     } catch (err) {
       console.log(err);
     }

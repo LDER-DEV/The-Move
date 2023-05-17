@@ -11,11 +11,9 @@ const forwardBtn = document.querySelector('#next')
 
 
 //Modal
-function editProfile() {
-  const editModal = document.getElementById('Modal');
-  const modalObj = new bootstrap.Modal(editModal);
-  modalObj.show();
-}
+// function editProfile() {
+
+// }
 function editBanner() {
   const editModal = document.getElementById('editModal');
   const modalObj = new bootstrap.Modal(editModal);
@@ -51,7 +49,11 @@ progressBar.style.width = `${progressPercent}%`
 
 }
 
-editButton.addEventListener('click', editProfile)
+editButton.addEventListener('click', ()=>{
+  const editModal = document.getElementById('Modal');
+  const modalObj = new bootstrap.Modal(editModal);
+  modalObj.show();
+})
 banner.addEventListener('click',editBanner)
 //play song
 playBtn.addEventListener('click', () => {

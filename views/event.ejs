@@ -4,7 +4,7 @@
     <div class="row justify-content-center mt-5">
       <div class="col-6">
    
-        <% if(moves.ApprovalStatus==='false' ){%>
+        <% if(moves.ApprovalStatus === false ){%>
           <h2 class="status">Awaiting Approval</h2>
           <%}else{ %>
             <h2 class="status">Your Event is Approved!</h2>
@@ -12,8 +12,12 @@
             <% } %>
         <img class="img-fluid" src="<%= moves.image%>" />
         <div class="row justify-content-between">
+          
           <form class="col-1" action="/moves/approveMove/<%= moves.id %>?_method=PUT" method="POST">
             <button class="btn btn-primary " type="submit">Approve</button>
+          </form>
+          <form class="col-1" action="/moves/denyMove/<%= moves.id %>?_method=PUT" method="POST">
+            <button class="btn btn-primary " type="submit">Deny</button>
           </form>
           <!-- <h3 class="col-3">Likes: <%= moves.likes %>
           </h3> -->
