@@ -7,8 +7,9 @@ module.exports = {
   getProfile: async (req, res) => {
     try {
       const moves = await Moves.find({ moves: req.moves });
-      const profile = await Profile.findById(req.params.id)
-      res.render("profile.ejs", { moves: moves, user: req.user, profile: profile  });
+      const profile = await Profile.findById(req.params.id);
+      const tracks = await Track.find({ tracks: req.tracks });
+      res.render("profile.ejs", { moves: moves, user: req.user, profile: profile, tracks: tracks  });
       console.log()
     } catch (err) {
       console.log(err);

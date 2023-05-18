@@ -1,72 +1,67 @@
+const editButton = document.querySelector('.editButton');
+const players = document.getElementsByClassName('player-container');
+const progressContainer = document.querySelector('.progressContainer');
+const progressBar = document.querySelector('.progBar');
+const audios = document.getElementsByClassName('audio');
+const banner = document.querySelector('.profileBanner');
+const backBtn = document.querySelector('#prev');
+const playBtn = document.getElementsByClassName('playBtn');
+const forwardBtn = document.querySelector('#next');
+const AudioArray = Array.from(audios);
+const playerArray = Array.from(players);
 
-const editButton = document.querySelector('.editButton')
-const player = document.querySelector('.player-container')
-const progressContainer = document.querySelector('.progressContainer')
-const progressBar = document.querySelector('.progBar')
-const audio = document.querySelector('#audio')
-const banner = document.querySelector('.profileBanner')
-const backBtn = document.querySelector('#prev')
-const playBtn = document.querySelector('#play')
-const forwardBtn = document.querySelector('#next')
-
-
-//Modal
-// function editProfile() {
-
-// }
 function editBanner() {
   const editModal = document.getElementById('editModal');
   const modalObj = new bootstrap.Modal(editModal);
   modalObj.show();
 }
 
-function playSong(){
-player.classList.add('play')
-playBtn.querySelector('i').classList.remove('fa-play')
-playBtn.querySelector('i').classList.add('fa-pause')
-audio.play()
+function back() {
+  // Implementation for back function
 }
 
-function pauseSong(){
-  player.classList.remove('play')
-  playBtn.querySelector('i').classList.add('fa-play')
-playBtn.querySelector('i').classList.remove('fa-pause')
-audio.pause()
+function forward() {
+  // Implementation for forward function
 }
 
-function back(){
-
+function updateProgress(e) {
+  const {duration, currentTime} = e.srcElement;
+  const progressPercent = (currentTime / duration) * 100;
+  progressBar.style.width = `${progressPercent}%`;
 }
 
-function forward(){
-
-}
-
-function updateProgress(e){
-const {duration, currentTime} = e.srcElement
-const progressPercent = (currentTime/ duration)*100
-progressBar.style.width = `${progressPercent}%`
-
-}
-
-editButton.addEventListener('click', ()=>{
+editButton.addEventListener('click', () => {
   const editModal = document.getElementById('Modal');
   const modalObj = new bootstrap.Modal(editModal);
   modalObj.show();
-})
-banner.addEventListener('click',editBanner)
-//play song
-playBtn.addEventListener('click', () => {
-  const isPlaying = player.classList.contains('play')
-  if(isPlaying){
-    pauseSong()
-  }else{
-    playSong()
-  }
-})
+});
 
-backBtn.addEventListener('click', back)
+banner.addEventListener('click', editBanner);
 
-forwardBtn.addEventListener('click' ,forward)
+// for each player, play button and audio element
+for(let i = 0; i < playerArray.length; i++) {
+  let player = playerArray[i];
+  let playButton = playBtn[i];
+  let audio = AudioArray[i];
 
-audio.addEventListener('timeupdate', updateProgress)
+  playButton.addEventListener('click', () => {
+    const isPlaying = player.classList.contains('play');
+    if (isPlaying) {
+      player.classList.remove('play');
+      playButton.querySelector('i').classList.add('fa-play');
+      playButton.querySelector('i').classList.remove('fa-pause');
+      audio.pause();
+    } else {
+      player.classList.add('play');
+      playButton.querySelector('i').classList.remove('fa-play');
+      playButton.querySelector('i').classList.add('fa-pause');
+      audio.play();
+    }
+  });
+
+  // add progress event for each audio
+  audio.addEventListener('timeupdate', updateProgress);
+}
+
+backBtn.addEventListener('click', back);
+forwardBtn.addEventListener('click', forward);

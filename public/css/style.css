@@ -90,7 +90,10 @@ body{
   background:rgba(0, 0, 0, 0.919);
   color:white;
 }
-
+.artistContainer{
+  display:flex;
+  flex-direction:wrap;
+}
 .banner {
     display: flex;
     flex-direction: column;
@@ -112,7 +115,7 @@ background: rgba(0, 0, 0, 0.415);
   border-radius:5px;
   width:85%;
 }
-.hidden{
+.hidden,#hidden{
   display: none;
 }
 /* a{
