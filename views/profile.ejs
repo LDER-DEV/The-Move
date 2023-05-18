@@ -7,15 +7,15 @@
       <div class="container profileCont">
         <%if(profile.id === user.id){%>
         <section class="banner">
-          <img class="img-fluid profileBanner" src="<%= profile.bannerPicture %>">
+          <img class="img-fluid profileBanner editBanner" src="<%= profile.bannerPicture %>">
         </section>
         
         
         <%}else{%>
-          <section class="bannerNonEdit">
-            <img class="img-fluid " src="<%= profile.bannerPicture %>">
+          <section class="banner">
+            <img class="img-fluid profileBanner" src="<%= profile.bannerPicture %>">
           </section>
-          <button hidden type="button" class="profileBanner  btn btn-primary" data-toggle="modal" data-target="#editModal">
+          <button hidden type="button" class="editBanner  btn btn-primary" data-toggle="modal" data-target="#editModal">
             <i class="fa-solid fa-gear " style="color: #000000;"></i>
           </button>
     
