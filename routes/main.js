@@ -4,10 +4,12 @@ const authController = require("../controllers/auth");
 const homeController = require("../controllers/home");
 const upload = require("../middleware/multer");
 const movesController = require("../controllers/moves");
+const radioController = require("../controllers/radio");
 const { ensureAuth, ensureGuest } = require("../middleware/auth");
 
 //Main Routes - simplified for now
 router.get("/", homeController.getIndex);
+router.get("/radio", radioController.getRadio);
 router.get("/signup", authController.getSignup);
 router.post("/signup", authController.postSignup);
 router.get("/login", authController.getLogin);

@@ -10,6 +10,19 @@ const forwardBtn = document.querySelector('#next');
 const AudioArray = Array.from(audios);
 const playerArray = Array.from(players);
 
+
+// this event listener holds a callback that allows the upload form to pop up
+document.getElementById('toggleFormButton').addEventListener('click', function() {
+  const form = document.getElementById('uploadForm');
+  if (form.style.display === 'none') {
+    form.style.display = 'block';
+  } else {
+    form.style.display = 'none';
+  }
+});
+
+
+
 function editBanner() {
   const editModal = document.getElementById('editModal');
   const modalObj = new bootstrap.Modal(editModal);

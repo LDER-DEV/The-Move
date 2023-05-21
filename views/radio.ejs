@@ -1,0 +1,51 @@
+<%- include('partials/header') -%>
+
+  <body class="radioBG">
+    <%- include('partials/navbar') -%>
+
+      <% for(var i=0; i < tracks.length; i++){{%>
+
+
+
+        <div class="player-container">
+          <div class="track-info">
+            <h4>
+              <%=tracks[i].trackName%>
+            </h4>
+            <h3>
+              <%=tracks[i].uploadedBy%>
+                </h4>
+                <div class="progressContainer">
+                  <div class="progBar"></div>
+                </div>
+          </div>
+          <audio src="<%=tracks[i].song%>" class="audio"></audio>
+
+          <div class="navigation">
+            <button id="prev" class="action-btn prevBtn"><i class="fa-sharp fa-solid fa-backward"
+                style="color: #c5d930;"></i></button>
+            <button id="play" class="action-btn playBtn"><i class="fa-solid fa-play"
+                style="color: #c5d930;"></i></button>
+            <button id="next" class="action-btn nextBtn"><i class="fa-sharp fa-solid fa-forward"
+                style="color: #c5d930;"></i></button>
+          </div>
+        </div>
+
+
+        <% }} %>
+
+
+          <!-- scripts -->
+          <script type="importmap">
+      {
+        "imports": {
+          "three": "https://unpkg.com/three@0.138.3/build/three.module.js"
+        }
+      }
+    </script>
+ 
+    <script src="/radio.js" type="module"></script>
+  </body>
+
+  </html>
+  <%- include('partials/footer') -%>
