@@ -23,7 +23,7 @@ const MovesSchema = new mongoose.Schema({
   },
   user: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "User",
+    ref: "User", required: true, index: true
   },
   venueId: {
     type: String,

@@ -85,7 +85,7 @@ module.exports = {
     try {
       // Upload image to cloudinary
       const result = await cloudinary.uploader.upload(req.file.path, {resource_type: "auto",  });
-
+      console.log(req.user.id)
       await Moves.create({
         eventTitle: req.body.eventTitle,
         image: result.secure_url,
@@ -101,7 +101,7 @@ module.exports = {
         endTime: req.body.endTime,
       });
       console.log("Post has been added!");
-      res.redirect(`/profile/${req.params.id}`);
+      res.redirect(`/profile/${req.user.id}`);
     } catch (err) {
       console.log(err);
     }
