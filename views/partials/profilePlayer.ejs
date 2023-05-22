@@ -20,10 +20,12 @@
     <button id="prev" class="action-btn prevBtn"><i class="fa-sharp fa-solid fa-backward" style="color: #c5d930;"></i></button>
     <button id="play" class="action-btn playBtn"><i class="fa-solid fa-play" style="color: #c5d930;"></i></button>
     <button id="next" class="action-btn nextBtn"><i class="fa-sharp fa-solid fa-forward" style="color: #c5d930;"></i></button>
+    <% if(tracks[i].uploadedBy.includes(user.userName)){ %>
     <form action="/moves/deleteTrack/?_method=DELETE" method="POST" class="col-3">
       <input type="hidden" name="id" value="<%=tracks[i].id%>">
       <button class="btn btn-primary " type="submit">Delete</button>
     </form>
+    <% } %>
   </div>
   </div>
 
