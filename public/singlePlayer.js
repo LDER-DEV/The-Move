@@ -1,80 +1,69 @@
-const editButton = document.querySelector('.editButton');
-const players = document.getElementsByClassName('player-container');
-const progressContainer = document.querySelector('.progressContainer');
-const progressBar = document.querySelector('.progBar');
-const audios = document.getElementsByClassName('audio');
-const banner = document.querySelector('.profileBanner');
-const backBtn = document.querySelector('#prev');
-const playBtn = document.getElementsByClassName('playBtn');
-const forwardBtn = document.querySelector('#next');
-const AudioArray = Array.from(audios);
-const playerArray = Array.from(players);
+
+const editButton = document.querySelector('.editButton')
+const player = document.querySelector('.radio-container')
+const progressContainer = document.querySelector('.progressContainer')
+const progressBar = document.querySelector('.progBar')
+const audio = document.querySelector('#audio')
+const banner = document.querySelector('.profileBanner')
+const backBtn = document.querySelector('#prev')
+const playBtn = document.querySelector('#play')
+const forwardBtn = document.querySelector('#next')
 
 
-// this event listener holds a callback that allows the upload form to pop up
-document.getElementById('toggleFormButton').addEventListener('click', function() {
-  const form = document.getElementById('uploadForm');
-  if (form.style.display === 'none') {
-    form.style.display = 'block';
-  } else {
-    form.style.display = 'none';
+
+function editProfile() {
+  const profileModal = document.getElementById('profileModal');
+  const modalObj = new bootstrap.Modal(profileModal);
+  modalObj.show();
+}
+
+// function editBanner() {
+//   const bannerModal = document.getElementById('bannerModal');
+//   const modalObj = new bootstrap.Modal(bannerModal);
+//   modalObj.show();
+// }
+
+function playSong(){
+player.classList.add('play')
+playBtn.querySelector('i').classList.remove('fa-play')
+playBtn.querySelector('i').classList.add('fa-pause')
+audio.play()
+}
+
+function pauseSong(){
+  player.classList.remove('play')
+  playBtn.querySelector('i').classList.add('fa-play')
+playBtn.querySelector('i').classList.remove('fa-pause')
+audio.pause()
+}
+
+function back(){
+
+}
+
+function forward(){
+
+}
+
+function updateProgress(e){
+const {duration, currentTime} = e.srcElement
+const progressPercent = (currentTime/ duration)*100
+progressBar.style.width = `${progressPercent}%`
+
+}
+//play song
+playBtn.addEventListener('click', () => {
+  const isPlaying = player.classList.contains('play')
+  if(isPlaying){
+    pauseSong()
+  }else{
+    playSong()
   }
-});
+})
 
+backBtn.addEventListener('click', back)
 
+forwardBtn.addEventListener('click' ,forward)
 
-function editBanner() {
-  const editModal = document.getElementById('editModal');
-  const modalObj = new bootstrap.Modal(editModal);
-  modalObj.show();
-}
+audio.addEventListener('timeupdate', updateProgress)
 
-function back() {
-  // Implementation for back function
-}
-
-function forward() {
-  // Implementation for forward function
-}
-
-function updateProgress(e) {
-  const {duration, currentTime} = e.srcElement;
-  const progressPercent = (currentTime / duration) * 100;
-  progressBar.style.width = `${progressPercent}%`;
-}
-
-editButton.addEventListener('click', () => {
-  const editModal = document.getElementById('Modal');
-  const modalObj = new bootstrap.Modal(editModal);
-  modalObj.show();
-});
-
-banner.addEventListener('click', editBanner);
-
-// for each player, play button and audio element
-for(let i = 0; i < playerArray.length; i++) {
-  let player = playerArray[i];
-  let playButton = playBtn[i];
-  let audio = AudioArray[i];
-
-  playButton.addEventListener('click', () => {
-    const isPlaying = player.classList.contains('play');
-    if (isPlaying) {
-      player.classList.remove('play');
-      playButton.querySelector('i').classList.add('fa-play');
-      playButton.querySelector('i').classList.remove('fa-pause');
-      audio.pause();
-    } else {
-      player.classList.add('play');
-      playButton.querySelector('i').classList.remove('fa-play');
-      playButton.querySelector('i').classList.add('fa-pause');
-      audio.play();
-    }
-  });
-
-  // add progress event for each audio
-  audio.addEventListener('timeupdate', updateProgress);
-}
-
-backBtn.addEventListener('click', back);
-forwardBtn.addEventListener('click', forward);

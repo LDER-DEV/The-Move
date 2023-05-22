@@ -274,9 +274,24 @@ background: rgba(0, 0, 0, 0.415);
   color:white;
 
 }
+.radio-container{
+  display:block;
+  z-index: 10;
+  padding:20px 30px;
+  height:50px;
+  background-color:black;
+  border-radius:15px;
+  box-shadow:0 20px 20px 0 rgba(117, 125, 33, 0.174);
+  color:white;
+  transform: translateY(100%);
+}
 .player-container.play .track-info{
   opacity:1;
   transform: translateY(100%);
+}
+.radio-container.play .track-info{
+  opacity:1;
+  transform: translateY(-100%);
 }
 .navigation{
   display:flex;
@@ -341,6 +356,7 @@ canvas{
   display:block;
   height:100vh;
   background: black;
+  z-index:-1;
 }
 .radioNav{
  display:block;

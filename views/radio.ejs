@@ -3,23 +3,23 @@
   <body class="radioBG">
     <%- include('partials/navbar') -%>
 
-      <% for(var i=0; i < tracks.length; i++){{%>
 
 
 
-        <div class="player-container">
+
+        <div class="radio-container">
           <div class="track-info">
             <h4>
-              <%=tracks[i].trackName%>
+             
             </h4>
             <h3>
-              <%=tracks[i].uploadedBy%>
+        
                 </h4>
                 <div class="progressContainer">
                   <div class="progBar"></div>
                 </div>
           </div>
-          <audio src="<%=tracks[i].song%>" class="audio"></audio>
+          <audio src="<%= tracks[Math.floor(Math.random()*2)+1] %>" id="audio"></audio> 
 
           <div class="navigation">
             <button id="prev" class="action-btn prevBtn"><i class="fa-sharp fa-solid fa-backward"
@@ -32,7 +32,7 @@
         </div>
 
 
-        <% }} %>
+  
 
 
           <!-- scripts -->
@@ -45,6 +45,7 @@
     </script>
  
     <script src="/radio.js" type="module"></script>
+    <script src="/singlePlayer.js" type="module"></script>
   </body>
 
   </html>
