@@ -1,6 +1,31 @@
 @charset "UTF-8";
+@font-face {
+  font-family: 'horizonbold';
+  src: url('../fonts/horizon.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+
+}
+@font-face {
+  font-family: 'horizonoutline';
+  src: url('../fonts/horizon_outlined.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+
+}
 html{
   font-size:62.5%;
+
+}
+h1{
+  font-family: 'horizonbold';
+}
+.boldHorizon{
+  font-size:4rem;
+}
+.outline{
+  font-family: 'horizonoutline';
+  font-size:4rem;
 }
 .profileInfo{
     display: flex;
@@ -93,7 +118,9 @@ html{
   z-index: 1;
 }
 body{
+background: url(../img/paperBG.png);
   margin-top:50px;
+
 }
 .container{
   width:100%;
@@ -130,7 +157,10 @@ label{
     margin-top: 25px;
 }
 .indexCont{
-  margin-left:25%;
+display:block;
+  padding:0;
+  color:white;
+  clear:both;
 }
 .col-md-3{
 background: rgba(0, 0, 0, 0.415);
@@ -149,31 +179,55 @@ background: rgba(0, 0, 0, 0.415);
 } */
 
 /* landing page video */
-#video-background {
-  object-fit: cover;
-  width: 100vw;
-  height: 100vh;
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: -1;
+#mainContainer{
+  display:flex;
+  flex-direction:column;
+
 }
 .video-container {
-  position: absolute;
+  display:flex;
+  
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
   overflow: hidden;
 }
-.video-container iframe {
+#background-video {
+  width: 100vw;
+  height: 600px;
+  object-fit: cover;
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 100%;
-  height: 100%;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: -1;
 }
+.about{
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 50px;
+  flex-wrap: wrap;
+  background: rgba(255, 255, 255, 0.408);
+  color:white;
+}
+.aboutContainer {
+  display: flex;
+}
+
+.carousel {
+  flex: 1;
+}
+
+.carouselContainer{
+  margin-top:50px;
+}
+.about {
+  flex: 1;
+  margin-left: 20px; /* Adjust the margin as needed */
+}
+
 .logoWrapper {
  display:flex;
  flex-direction:row;
@@ -183,13 +237,12 @@ background: rgba(0, 0, 0, 0.415);
 }
 
 .overlay {
-  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   background: rgba(0,0,0,0.5);
-  z-index: 0;
+  z-index: 1;
 }
 
 .btn-group {

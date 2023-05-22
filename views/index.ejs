@@ -1,39 +1,86 @@
 <%- include('partials/header') -%>
 
-<main id="video-background">
+  <section id="mainContainer">
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-  <div class="container">
-    <a class="navbar-brand" href="/">
-      <img class= "navLogo" src="img/nav logo.png" alt="Logo">
-    </a>
+      <div class="container">
+        <a class="navbar-brand" href="/">
+          <img class="navLogo" src="img/nav logo.png" alt="Logo">
+        </a>
 
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-collapse-1" aria-controls="navbar-collapse-1" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-collapse-1"
+          aria-controls="navbar-collapse-1" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
 
-    <div class="collapse navbar-collapse" id="navbar-collapse-1">
-      <ul class="navbar-nav ms-auto">
-        <li class="nav-item">
-          <a class="nav-link btn btn-outline-light" href="/login"><span class="fa fa-user"></span> Login</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link btn btn-outline-light" href="/signup"><span class="fa fa-user"></span> Signup</a>
-        </li>
-      </ul>
-    </div>
-  </div>
-</nav>
-    <div class="video-container">
-        <iframe src="https://www.youtube.com/embed/0y09sHXKmWM?autoplay=1&loop=1&mute=1&controls=0&playlist=0y09sHXKmWM" frameborder="0" allowfullscreen></iframe>
+        <div class="collapse navbar-collapse" id="navbar-collapse-1">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link btn btn-outline-light" href="/login"><span class="fa fa-user"></span> Login</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link btn btn-outline-light" href="/signup"><span class="fa fa-user"></span> Signup</a>
+            </li>
+          </ul>
+        </div>
       </div>
-      <div class="overlay"></div>
-      <div class="container indexCont">
-        <div class="row">
-          <div class="row-lg-8 logoWrapper">
-            <img class="indexLogo" src="img/Logo White.svg" alt="LOGO">
-          </div>
-</main>
-    
+    </nav>
+    <div class="video-container">
 
-<%- include('partials/footer') -%>
+      <video id="background-video" autoplay loop muted>
+        <source src="../img/indexBG.mp4" type="video/mp4">
+      </video>
+    </div>
+    <section class="overlay"></section> 
+    <div class=" indexCont">
+      <div class="row">
+        <div class="row-lg-8 logoWrapper">
+          <img class="indexLogo" src="img/Logo White.svg" alt="LOGO">
+        </div>
+      </div>
+    </div>
+  </section>
+  <div class="aboutContainer">
+    
+  <div id="carouselExampleIndicators" class="carousel slide carouselContainer" data-bs-ride="carousel">
+    <ol class="carousel-indicators">
+      <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"></li>
+      <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"></li>
+      <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"></li>
+    </ol>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="/img/carousel image 4.jpg" class="d-inline w-100" alt="Image 1">
+      </div>
+      <div class="carousel-item">
+        <img src="/img/carousel image 2.jpg" class="d-inline w-100" alt="Image 2">
+      </div>
+      <div class="carousel-item">
+        <img src="/img/carousel image 3.jpg" class="d-inline w-100" alt="Image 3">
+      </div>
+    </div>
+    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </a>
+  </div>
+  
+  <div class="about">
+    <h1 class="boldHorizon">What's the Move? </h1>
+    
+    <p>
+      The Move is a full-stack web application designed to aid artists in booking venues and thriving in their local communities. This platform empowers artists to discover and secure the perfect stages for their performances, fostering growth and connection within their artistic realms. From intimate coffee shops to bustling concert halls, "The Move" is the perfect tool for artists to amplify their presence and leave a mark on their local scene.</p>
+    <section>
+    <h1 class="boldHorizon">LETS MAKE MOVES</h1>
+    <h1 class="outline">LETS MAKE MOVES</h1>
+    <h1 class="outline">LETS MAKE MOVES</h1>
+    </section>
+  </div>
+</div>
+
+
+  <%- include('partials/footer') -%>
