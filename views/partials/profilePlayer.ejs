@@ -16,9 +16,13 @@
   <audio src="<%=tracks[i].song%>" class="audio"></audio>
   
   <div class="navigation">
+    <p><%=tracks[i].trackName%></p>
     <button id="prev" class="action-btn prevBtn"><i class="fa-sharp fa-solid fa-backward" style="color: #c5d930;"></i></button>
     <button id="play" class="action-btn playBtn"><i class="fa-solid fa-play" style="color: #c5d930;"></i></button>
     <button id="next" class="action-btn nextBtn"><i class="fa-sharp fa-solid fa-forward" style="color: #c5d930;"></i></button>
+    <form action="/moves/deletePost/<%= moves.id %>?_method=DELETE" method="POST" class="col-3">
+      <button class="btn btn-primary " type="submit">Delete</button>
+    </form>
   </div>
   </div>
 
