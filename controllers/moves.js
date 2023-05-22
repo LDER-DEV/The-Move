@@ -1,7 +1,8 @@
 const cloudinary = require("../middleware/cloudinary");
 const Moves = require("../models/Moves");
 const Profile = require('../models/User')
-const Track = require('../models/Tracks')
+const Track = require('../models/Tracks');
+const Tracks = require("../models/Tracks");
 module.exports = {
   getProfile: async (req, res) => {
     try {
@@ -123,7 +124,24 @@ module.exports = {
       console.log(err);
     }
   },
+  deleteTrack: async (req, res) => {
+    try {
+      // Find track by id
+      const track = await Track.findById(req.body.id);
   
+      // Delete image from cloudinary
+      await cloudinary.uploader.destroy(track.cloudinaryId);
+  
+      // Delete track from db
+      await Track.deleteOne({ _id: req.body.id });
+  
+      console.log("Deleted Track");
+      res.redirect(`/profile/${req.user.id}`);
+    } catch (err) {
+      console.error(err);
+      res.redirect(`/profile/${req.user.id}`);
+    }
+  },
   approveMove: async (req, res) => {
     try {
       await Moves.findOneAndUpdate(
