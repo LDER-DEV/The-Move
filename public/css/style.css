@@ -342,6 +342,9 @@ background: rgba(0, 0, 0, 0.415);
   opacity:1;
   transform: translateY(100%);
 }
+.playBtn{
+  margin:15px;
+}
 .radio-container.play .track-info{
   opacity:1;
   transform: translateY(-100%);
@@ -375,25 +378,25 @@ background: rgba(0, 0, 0, 0.415);
 .track-info h4{
 margin:0
 };
-.progressContainer {
-  background:rgb(255, 255, 255);
-  border-radius:5px;
-  cursor:pointer;
-  margin:10px 0;
-  height:5px;
-  width:100%;
-  z-index: 1;
-}
+
 .progBar{
-  background-color: #00ff04;
+  background-color: #eaff00;
   border: 1px solid white;
   border-radius: 2px;
   height: 10px;
   width: 0%;
   position: absolute;
   transition: width 0.1s linear;
-  transform: translateY(-70%);
+  transform: translateY(-100%);
 }
+.progressContainer {
+  background:rgb(255, 255, 255);
+  cursor:pointer;
+  margin:10px 0;
+  height:10px;
+  width:100%;
+  z-index: 1;
+};
 /* profile player styling end */
 /* profile audio showcase styiling */
 .audioShowcase{
@@ -462,15 +465,16 @@ canvas{
 margin:0
 };
 .progressContainer {
+  position:relative;
   background:rgb(255, 255, 255);
-  border-radius:5px;
-  cursor:pointer;
-  margin:10px 0;
-  height:5px;
+  cursor:grab;
+  margin: 0;
+  height:10px;
   width:100%;
-  z-index: 1;
+  z-index: 10;
+  transform: translateY(-70%);
 }
-.progBar{
+.progBar{ 
   background-color: #00ff04;
   border: 1px solid white;
   border-radius: 2px;

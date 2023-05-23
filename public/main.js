@@ -1,16 +1,16 @@
 const editButton = document.querySelector('.editButton');
 const players = document.getElementsByClassName('player-container');
-const progressContainer = document.querySelector('.progressContainer');
-const progressBar = document.querySelector('.progBar');
+const progressContainer = document.getElementsByClassName('progressContainer');
+const progressBar = document.getElementsByClassName('progBar');
 const audios = document.getElementsByClassName('audio');
 const banner = document.querySelector('.editBanner');
-const backBtn = document.querySelector('#prev');
+// const backBtn = document.querySelector('#prev');
 const playBtn = document.getElementsByClassName('playBtn');
-const forwardBtn = document.querySelector('#next');
+// const forwardBtn = document.querySelector('#next');
 const AudioArray = Array.from(audios);
 const playerArray = Array.from(players);
-
-
+const progArray = Array.from(progressBar)
+const progressUpdateArray = Array.from(progressContainer)
 // this event listener holds a callback that allows the upload form to pop up
 document.getElementById('toggleFormButton').addEventListener('click', function() {
   const form = document.getElementById('uploadForm');
@@ -28,19 +28,19 @@ function editBanner() {
   const modalObj = new bootstrap.Modal(editModal);
   modalObj.show();
 }
+function setProgress(e){
+  const width = this.clientWidth;
+  const clickX= e.offsetX;
 
-function back() {
-  // Implementation for back function
+  for (let i = 0; i < AudioArray.length; i++) {
+    let duration = AudioArray[i].duration;
+    AudioArray[i].currentTime = (clickX / width) * duration;
+  }
 }
-
-function forward() {
-  // Implementation for forward function
-}
-
 function updateProgress(e) {
   const {duration, currentTime} = e.srcElement;
   const progressPercent = (currentTime / duration) * 100;
-  progressBar.style.width = `${progressPercent}%`;
+  progArray.map(element=> element.style.width = `${progressPercent}%`);
 }
 
 editButton.addEventListener('click', () => {
@@ -75,6 +75,6 @@ for(let i = 0; i < playerArray.length; i++) {
   // add progress event for each audio
   audio.addEventListener('timeupdate', updateProgress);
 }
-
-backBtn.addEventListener('click', back);
-forwardBtn.addEventListener('click', forward);
+progressUpdateArray.map(element=> element.addEventListener('click', setProgress))
+// backBtn.addEventListener('click', back);
+// forwardBtn.addEventListener('click', forward);
