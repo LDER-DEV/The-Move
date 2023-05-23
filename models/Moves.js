@@ -8,6 +8,7 @@ const MovesSchema = new mongoose.Schema({
   image: {
     type: String,
     require: true,
+    default: 'https://res.cloudinary.com/daniwk9uv/image/upload/v1684872137/Gradient_Square_Typography_Fashion_Brand_Logo_lxjjno.png',
   },
   cloudinaryId: {
     type: String,

@@ -2,7 +2,7 @@ const cloudinary = require("../middleware/cloudinary");
 const Moves = require("../models/Moves");
 const Profile = require('../models/User')
 const Track = require('../models/Tracks');
-const Tracks = require("../models/Tracks");
+
 module.exports = {
   getProfile: async (req, res) => {
     try {
@@ -33,51 +33,21 @@ module.exports = {
       console.log(err);
     }
   },
-  editProfile: async (req, res) => {
-    try {
-     
-        const result = await cloudinary.uploader.upload(req.file.path, {resource_type: "auto",  });
-             console.log(result)
-      await Profile.findOneAndUpdate(
-        { _id: req.params.id },
-        {
-          $set: { 
-            profilePicture: result.secure_url,
-            bio: req.body.bio
 
-           },
-        }
-      );
-      console.log("profile updated");
-      res.redirect(`/profile/${req.params.id}`);
-    } catch (err) {
-      console.log(err);
-    }
-  },
-  editBanner: async (req, res) => {
-    try {
-
-        const result = await cloudinary.uploader.upload(req.file.path, {resource_type: "auto",  });
-             console.log(result)
-      await Profile.findOneAndUpdate(
-        { _id: req.params.id },
-        {
-          $set: { 
-            bannerPicture: result.secure_url,
-           },
-        }
-      );
-      console.log("profile updated");
-      res.redirect(`/profile/${req.params.id}`);
-    } catch (err) {
-      console.log(err);
-    }
-  },
   getEvent: async (req, res) => {
     try {
-      const artists = await Profile.find().sort({ createdAt: "desc" }).lean();
+      const artists = await Profile.find().sort({ userName: 1 }).lean();
       const moves = await Moves.findById(req.params.id);
       res.render("event.ejs", { moves: moves, user: req.user,artists: artists });
+    } catch (err) {
+      console.log(err);
+    }
+  },
+
+  getUsers: async (req, res) => {
+    try {
+      const profile = await Profile.find().sort({ userName: 1 });
+      res.render("artists.ejs", { profile: profile, user: req.user });
     } catch (err) {
       console.log(err);
     }

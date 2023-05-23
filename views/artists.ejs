@@ -1,5 +1,4 @@
 <%- include('partials/header') -%>
-<bod class="container">
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
       <a class="navbar-brand" href="/">
@@ -18,10 +17,10 @@
           </li>
 
           <li class="nav-item">
-            <a class="nav-link btn btn-outline-light" href="/profile/<%= user.id%>">Profile</a>
+            <a class="nav-link btn btn-outline-light" href="/profile/<%= user._id%>">Profile</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link btn btn-outline-light" href="/users">Artists</a>
+            <a class="nav-link btn btn-outline-light" href="/venues">Venues</a>
           </li>
           <li class="nav-item">
             <a class="nav-link btn btn-outline-light" href="/upcomingMoves">Moves</a>
@@ -32,27 +31,30 @@
   </nav>
 
   <div class="container">
-    <h1>Venues</h1>
+    <h1>Users</h1>
     <div class="row justify-content-center mt-5">
-      <ul class="row list-unstyled">
-        <% for(var i=0; i < venues.length; i++){ if( venues[i].isVenue==='true' ) {%>
-          <section class="bannerVenues">
-            <li class="col-6 justify-content-between mt-5">
-              <h1>
-                <%= venues[i].userName%>
-              </h1>
-              <h2>     <%= venues[i].address%></h2>
-              <a href="/profile/<%= venues[i]._id%>">
-                <img class="img-fluid profileBanner" src="<%= venues[i].bannerPicture%>">
+      <ul class="userCont list-unstyled">
+
+        <% for(var i=0; i < profile.length; i++){%>
+          <% if(profile[i].isVenue==='false' ){%>
+            <li>
+              <a href="/profile/<%= profile[i].id%>">
+                <h1>
+                  <%= profile[i].userName%>
+                </h1>
               </a>
+              <div class="row-4 justify-content-between mt-5">
+                <section class="imageContainer">
+
+                  <a href="/profile/<%= profile[i].id%>">
+                    <img class="img-fluid profileImage" src="<%= profile[i].profilePicture%>">
+                  </a>
+
+                </section>
+              </div>
             </li>
-                  <!-- map test -->
-    
-                <!-- map test end -->
-          </section>
-          <% } }%>
+            <% }} %>
       </ul>
     </div>
   </div>
-</body>
   <%- include('partials/footer') -%>

@@ -21,10 +21,10 @@
             </button>
 
             <%}%>
-            <div class= "">
-              <!-- profile image and bio -->
-              <div class="col mt-5">
-              
+              <div class="">
+                <!-- profile image and bio -->
+                <div class="col mt-5">
+
                   <div>
 
                     <div class="row-4 justify-content-between mt-5">
@@ -59,19 +59,20 @@
                           <div class="audioShowcase">
 
                             <div class="mt-auto mb-auto  text-center">
-                              <% if (profile.isVenue==='No' ) { %>
+                              <% if (profile.isVenue==='false' || profile.isVenue==='No' ) { %>
                                 <h2>
                                   <%=profile.userName%>'s Showcase
                                 </h2>
-                                <div >
+                                <div>
                                   <%- include('partials/profilePlayer') %>
                                 </div>
-                              
+
                                 <button id="toggleFormButton" class="btn btn-primary">Upload a Song</button>
-                                
-                                <form id="uploadForm" action="/moves/addTrack" enctype="multipart/form-data" method="POST" style="display: none;">
+
+                                <form id="uploadForm" action="/moves/addTrack" enctype="multipart/form-data"
+                                  method="POST" style="display: none;">
                                   <div class="mb-3">
-                                  
+
                                     <label for="trackName" class="form-label">Song Title</label>
                                     <input type="text" class="form-control" id="trackName" name="trackName">
                                   </div>
@@ -85,16 +86,18 @@
                                   </div>
                                   <button type="submit" class="btn btn-primary" value="Upload">Submit</button>
                                 </form>
-                                <% } %>
+                                <% }else{ %>
+                                  <button id="toggleFormButton" class="hidden">Upload a Song</button>
+                                  <%}%>
                             </div>
                           </div>
-                        </div>
                   </div>
-                
+                </div>
+
               </div>
 
               <!-- SUBMISSION FORM IF ACCOUNT IS A VENUE -->
-              <% if (profile.isVenue==='Yes' ) { %>
+              <% if (profile.isVenue==='true' ) { %>
 
                 <h2>Submit an event</h2>
                 <form action="/moves/createPost" enctype="multipart/form-data" method="POST">
@@ -135,81 +138,83 @@
                   <button type="submit" class="btn btn-primary" value="Upload">Submit</button>
                 </form>
                 <% } %>
-      
 
-      <div class="row-4 ">
-        <ul class="row list-unstyled">
-          <!-- upcoming events -->
-          <% for(var i=0; i < moves.length; i++){
-            if(moves[i].venueName===profile.userName||moves[i].artists.includes(profile.userName)) {%>
 
-            <section class=' moveContainer'>
-              <li class="row-6 mt-5 ">
-                <a class="event" href="/moves/<%= moves[i]._id%>">
-                  <img class="img-fluid eventImage" src="<%= moves[i].image%>">
-                </a>
-                <h2>
-                  <%= moves[i].eventTitle %>
-                </h2>
-                <span> When: </span></br>
-                <span>
-                  <%= moves[i].startDate.toString().substring(0,15) %>
-                </span>
-                <p class="startTime">
-                  <%= moves[i].startTime %>
-                </p>
-                <p class="endTime">
-                  <%= moves[i].endTime %>
-                </p>
-                <p>
-                  <%=moves[i].artists%>
-                </p>
-                <span> Where: </span></br>
-                <a href="/profile/<%= moves[i].venueId %>"><span>
-                    <%= moves[i].venueName %>
-              </li></a>
-              <% if(moves[i].ApprovalStatus===false ){%>
-                <span class="status">Awaiting Approval</span>
-                <%}else{ %>
-                  <span class="status">Your Event is Approved!</span>
-                  <% } %>
+                  <div class="row-4 ">
+                    <ul class="row list-unstyled">
+                      <% if (profile.isVenue === "false" && moves.length <= 0){%>
+                      <section>
+                        <h1 class="outline">LETS MAKE MOVES</h1>
+                        <h1 class="boldHorizon">LETS MAKE MOVES</h1>
+                        <h1 class="outline">LETS MAKE MOVES</h1>
+                        <span><a href="/venues">Click here to checkout some venues and submit an event</a></span>
+                        </section>
+                        <%}%>
+                      <!-- upcoming events -->
+                      <% for(var i=0; i < moves.length; i++){
+                        if(moves[i].venueName===profile.userName||moves[i].artists.includes(profile.userName)) {%>
 
-                    <% }}%>
+                        <section class=' moveContainer'>
+                          <li class="row-6 mt-5 ">
+                            <a class="event" href="/moves/<%= moves[i]._id%>">
+                              <img class="img-fluid eventImage" src="<%= moves[i].image%>">
+                            </a>
+                            <h2>
+                              <%= moves[i].eventTitle %>
+                            </h2>
+                            <span> When: </span></br>
+                            <span>
+                              <%= moves[i].startDate.toString().substring(0,15) %>
+                            </span>
+                            <p class="startTime">
+                              <%= moves[i].startTime %>
+                            </p>
+                            <p class="endTime">
+                              <%= moves[i].endTime %>
+                            </p>
+                            <p>
+                              <%=moves[i].artists%>
+                            </p>
+                            <span> Where: </span></br>
+                            <a href="/profile/<%= moves[i].venueId %>"><span>
+                                <%= moves[i].venueName %>
+                          </li></a>
+                          <% if(moves[i].ApprovalStatus===false ){%>
+                            <span class="status">Awaiting Approval</span>
+                            <%}else{ %>
+                              <span class="status">Your Event is Approved!</span>
+                              <% } %>
 
-            </section>
+                                <% }}%>
 
-        </ul>
+                        </section>
+
+                    </ul>
+                  </div>
+
       </div>
 
-    </div>
-
       <!-- profile edit modal start -->
-      <div class="modal fade" id="Modal" tabindex="-1" role="dialog">
+      <div class="modal fade" id="profilePictureModal" tabindex="-1" role="dialog">
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title" id="ModalTitle">Edit your profile</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
+
             </div>
             <div class="modal-body">
               <!-- update form starts -->
               <form action="/editProfile/<%= profile.id %>?_method=PUT" enctype="multipart/form-data" method="POST">
                 <div class="mb-3">
                   <label for="profilePic" class="form-label">Profile Picture</label>
-                  <input type="file" class="form-control" id="profilePic" name="imageFiles" accept="image/*">
+                  <input type="file" class="form-control" id="profilePic" name="imageFiles" accept="image/*" value="<%profile.profilePicture%>">
                 </div>
-                <div class="mb-3">
-                  <input type="text" class="form-control" id="biography" name="bio" value="<%=profile.bio%>">
-                </div>
+            
                 <button type="submit" class="btn btn-primary" value="Upload">Submit</button>
               </form>
               <!-- update form ends -->
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" id="modalClose" data-dismiss="modal">Close</button>
-              <button type="submit" class="btn btn-primary">Save changes</button>
             </div>
           </div>
         </div>
@@ -217,15 +222,13 @@
       <!-- modal end -->
 
 
-      <!-- profile edit modal start -->
-      <div class="modal fade" id="editModal" tabindex="-1" role="dialog">
+      <!-- banner edit modal start -->
+      <div class="modal fade" id="bannerModal" tabindex="-1" role="dialog">
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title" id="editModalTitle">Edit your profile</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
+
             </div>
             <div class="modal-body">
               <!-- update form starts -->
@@ -240,14 +243,37 @@
               </form>
               <!-- update form ends -->
             </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" id="modalClose" data-dismiss="modal">Close</button>
-              <button type="submit" class="btn btn-primary">Save changes</button>
-            </div>
+
           </div>
         </div>
       </div>
       <!-- modal end -->
+
+          <!-- bio edit modal start -->
+          <div class="modal fade" id="bioModal" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="editModalTitle">Edit your profile</h5>
+    
+                </div>
+                <div class="modal-body">
+                  <!-- update form starts -->
+                  <form action="/editBio/<%= profile.id %>?_method=PUT"  method="POST">
+    
+                    <div class="mb-3">
+                      <input type="text" class="form-control" id="biography" name="bio" value="<%=profile.bio%>">
+                    </div>
+    
+                    <button type="submit" class="btn btn-primary" value="Upload">Submit</button>
+                  </form>
+                  <!-- update form ends -->
+                </div>
+    
+              </div>
+            </div>
+          </div>
+          <!-- modal end -->
       <script src="/main.js"></script>
     </body>
 

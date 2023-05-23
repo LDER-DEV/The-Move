@@ -8,7 +8,8 @@ const UserSchema = new mongoose.Schema({
   isVenue : String,
   profilePicture: { type: String, default: 'https://res.cloudinary.com/daniwk9uv/image/upload/v1684039417/defaultProfile.jpg' },
   bannerPicture: { type: String, default: 'https://res.cloudinary.com/daniwk9uv/image/upload/c_fill,g_auto,h_250,w_970/b_rgb:000000,e_gradient_fade,y_-0.5/v1684039957/defaultBanner_yk0rdt.jpg' },
-  bio : { type: String, default: 'Tell us about yourself!'}
+  bio : { type: String, default: 'Tell us about yourself!'},
+  address : { type: String, default: ''}
 
 
 });

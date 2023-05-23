@@ -1,6 +1,7 @@
-const editButton = document.querySelector('.editButton');
+const profilePicture = document.querySelector('.profileImage');
 const players = document.getElementsByClassName('player-container');
 const progressContainer = document.getElementsByClassName('progressContainer');
+const editButton = document.querySelector('.editButton');
 const progressBar = document.getElementsByClassName('progBar');
 const audios = document.getElementsByClassName('audio');
 const banner = document.querySelector('.editBanner');
@@ -22,11 +23,7 @@ document.getElementById('toggleFormButton').addEventListener('click', function()
 
 
 
-function editBanner() {
-  const editModal = document.getElementById('editModal');
-  const modalObj = new bootstrap.Modal(editModal);
-  modalObj.show();
-}
+
 //  editing progress bar on each song
 function setProgress(e){
   const width = this.clientWidth;
@@ -45,16 +42,27 @@ function updateProgress(e) {
 }
 
 
-// profile editing : Banner
-editButton.addEventListener('click', () => {
-  const editModal = document.getElementById('Modal');
+// profile editing : profilePicture
+profilePicture.addEventListener('click', () => {
+  const editModal = document.getElementById('profilePictureModal');
   const modalObj = new bootstrap.Modal(editModal);
   modalObj.show();
 });
 
-banner.addEventListener('click', editBanner);
-// banner function end
+//editing banner
 
+banner.addEventListener('click', () =>{
+  const bannerModal = document.getElementById('bannerModal');
+  const modalObj = new bootstrap.Modal(bannerModal);
+  modalObj.show(); 
+});
+// banner function end
+// edit bio
+editButton.addEventListener('click', () =>{
+  const bioModal = document.getElementById('bioModal');
+  const modalObj = new bootstrap.Modal(bioModal);
+  modalObj.show(); 
+});
 // for each player, play button and audio element
 for(let i = 0; i < playerArray.length; i++) {
   let player = playerArray[i];

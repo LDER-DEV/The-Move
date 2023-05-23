@@ -17,6 +17,7 @@ html{
   font-size:62.5%;
 
 }
+
 h1{
   font-family: 'horizonbold';
 }
@@ -119,7 +120,7 @@ html{
 }
 body{
 background: url(../img/paperBG.png);
-  margin-top:50px;
+  margin-top:150px;
 
 }
 .container{
@@ -144,14 +145,22 @@ label{
   display:flex;
   flex-direction:wrap;
 }
+.userCont{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  text-align: center;
+
+}
+
 .banner {
     display: flex;
     flex-direction: column;
     justify-content: center;
     width: 100%;
-    background: url(../img/the\ move\ bg.png);
+    background: black;
     flex-wrap: wrap;
-    height: 200px;
+    height: 300px;
     position: relative;
     overflow: hidden;
     margin-top: 25px;
@@ -194,7 +203,7 @@ background: rgba(0, 0, 0, 0.415);
 }
 #background-video {
   width: 100%;
-  height: 600px;
+  height: 700px;
   object-fit: cover;
   position: absolute;
   left: 0;
@@ -255,8 +264,9 @@ background: rgba(0, 0, 0, 0.415);
  
 }
 .containerLogIn,.containerSignUp{
-  background:rgba(128, 128, 128, 0.605);
+  background:rgba(59, 59, 59, 0.605);
   border-radius:25px;
+  color:white;
 }
 .bgPicture{
   background-image: url('/img/emb\ 2nd\ anniversary\ family\ photo-2.jpg');
@@ -779,7 +789,7 @@ p {
   margin-bottom: 1rem;
 }
 span{
-  font-size:1.5rem;
+  font-size:2rem;
 }
 abbr[title] {
   -webkit-text-decoration: underline dotted;
@@ -858,11 +868,11 @@ sup {
 }
 
 a {
-  color: rgba(var(--bs-link-color-rgb), var(--bs-link-opacity, 1));
-  text-decoration: underline;
+  color:white;
+  text-decoration: none;
 }
 a:hover {
-  --bs-link-color-rgb: var(--bs-link-hover-color-rgb);
+  color:goldenrod
 }
 
 a:not([href]):not([class]), a:not([href]):not([class]):hover {
