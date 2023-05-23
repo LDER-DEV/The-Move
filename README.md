@@ -1,5 +1,6 @@
-# Install
 
+![the move](https://github.com/LDER-DEV/The-Move/assets/126501848/e25f2d8a-9c38-49df-9f1c-e5d463959a07)
+# Install
 `npm install`
 
 ---
