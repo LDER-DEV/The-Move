@@ -72,7 +72,7 @@ module.exports = {
         endTime: req.body.endTime,
       });
       console.log("Post has been added!");
-      res.redirect(`/profile/${req.params.id}`);
+      res.redirect(`/profile/${req.user._id}`);
     } catch (err) {
       console.log(err);
     }
