@@ -1,10 +1,22 @@
+
+const banner = document.querySelector('.editBanner');
 const profilePicture = document.querySelector('.profileImage');
+const editButton = document.querySelector('.editButton');
+const editMove = document.getElementsByClassName('editMove');
+const editMoveBtn = Array.from(editMove)
+
+editMoveBtn.forEach(element =>{
+  element.addEventListener('click',() =>{
+  const moveModal = document.getElementById('moveModal');
+  const modalObj = new bootstrap.Modal(moveModal);
+  modalObj.show();
+
+  })
+})
 const players = document.getElementsByClassName('player-container');
 const progressContainer = document.getElementsByClassName('progressContainer');
-const editButton = document.querySelector('.editButton');
 const progressBar = document.getElementsByClassName('progBar');
 const audios = document.getElementsByClassName('audio');
-const banner = document.querySelector('.editBanner');
 const playBtn = document.getElementsByClassName('playBtn');
 const AudioArray = Array.from(audios);
 const playerArray = Array.from(players);
@@ -63,6 +75,8 @@ editButton.addEventListener('click', () =>{
   const modalObj = new bootstrap.Modal(bioModal);
   modalObj.show(); 
 });
+// edit Move
+
 // for each player, play button and audio element
 for(let i = 0; i < playerArray.length; i++) {
   let player = playerArray[i];

@@ -28,6 +28,7 @@
                     <form action="/moves/deletePost/<%= moves.id %>?_method=DELETE" method="POST" class="col-3">
                       <button class="btn btn-primary " type="submit">Delete</button>
                     </form>
+                    
                     <%}%>
                 </div>
         </div>
@@ -61,11 +62,11 @@
                   <h4>
                     <%=artists[i].userName%>
                   </h4>
-                </a>
+           
               
                   <div class="imageContainer ">
                     <img class="profileImage" src="<%=artists[i].profilePicture%>">
-                
+                  </a>
                 
               </div>
               <% }}%>

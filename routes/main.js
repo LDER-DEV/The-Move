@@ -22,6 +22,7 @@ router.get("/users", ensureAuth, movesController.getUsers);
 router.get("/logout", authController.logout);
 router.put("/editProfile/:id", upload.single("imageFiles"), profileController.editProfile);
 router.put("/editBanner/:id", upload.single("imageFiles"), profileController.editBanner);
+router.put("/editMove/:id", profileController.editMove);
 router.put("/editBio/:id", profileController.editBio);
 
 

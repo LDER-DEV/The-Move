@@ -132,6 +132,7 @@ background: url(../img/paperBG.png);
 
 }
 label{
+  color:rgb(255, 255, 255);
   font-size:2rem;
 }
 .profileCont{
@@ -145,6 +146,7 @@ label{
   display:flex;
   flex-direction:wrap;
 }
+
 .userCont{
   display: flex;
   flex-wrap: wrap;
@@ -343,7 +345,7 @@ background: rgba(0, 0, 0, 0.415);
   z-index: 10;
   padding:20px 30px;
   height:50px;
-  background-color:black;
+  background-color:rgba(0, 0, 0, 0.537);
   border-radius:15px;
   box-shadow:0 20px 20px 0 rgba(117, 125, 33, 0.174);
   color:white;
@@ -460,7 +462,7 @@ canvas{
   
 }
 .track-info{
-  background-color: #000000;
+  background-color: #00000084;
   color:white;
   position: absolute;
   top:0;
@@ -6119,6 +6121,7 @@ textarea.form-control-lg {
 }
 
 .modal-body {
+  background: hsla(0, 0%, 0%, 0.5);
   position: relative;
   flex: 1 1 auto;
   padding: var(--bs-modal-padding);
@@ -8608,7 +8611,7 @@ textarea.form-control-lg {
 }
 
 .mt-auto {
-  margin-top: auto !important;
+  margin-top: 20px !important;
 }
 
 .me-0 {
