@@ -329,7 +329,6 @@ background: rgba(0, 0, 0, 0.415);
 }
 .eventImageContainer {
   width: 300px; 
-  height: 300px; 
   border-radius: 25px;
   border: #ffe943b0 double 10px;
   overflow: hidden; 
