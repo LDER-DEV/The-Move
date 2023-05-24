@@ -36,23 +36,6 @@ document.getElementById('toggleFormButton').addEventListener('click', function()
 
 
 
-//  editing progress bar on each song
-function setProgress(e){
-  const width = this.clientWidth;
-  const clickX= e.offsetX;
-
-  for (let i = 0; i < AudioArray.length; i++) {
-    let duration = AudioArray[i].duration;
-    AudioArray[i].currentTime = (clickX / width) * duration;
-  }
-}
-//having the progress bar move over time
-function updateProgress(e) {
-  const {duration, currentTime} = e.srcElement;
-  const progressPercent = (currentTime / duration) * 100;
-  progArray.map(element=> element.style.width = `${progressPercent}%`);
-}
-
 
 // profile editing : profilePicture
 profilePicture.addEventListener('click', () => {
@@ -97,6 +80,23 @@ for(let i = 0; i < playerArray.length; i++) {
       audio.play();
     }
   });
+
+//  editing progress bar on each song
+function setProgress(e){
+  const width = this.clientWidth;
+  const clickX= e.offsetX;
+
+  for (let i = 0; i < AudioArray.length; i++) {
+    let duration = AudioArray[i].duration;
+    AudioArray[i].currentTime = (clickX / width) * duration;
+  }
+}
+//having the progress bar move over time
+function updateProgress(e) {
+  const {duration, currentTime} = e.srcElement;
+  const progressPercent = (currentTime / duration) * 100;
+  progArray.map(element=> element.style.width = `${progressPercent}%`);
+}
 
   // add progress event for each audio
   audio.addEventListener('timeupdate', updateProgress);
