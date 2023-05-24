@@ -7,45 +7,44 @@
 
 
 
-        <div class="radio-container">
-          <div class="track-info">
-            <h4>
-             
+      <div class="radio-container">
+        <div class="track-info">
+          <h4>
+
+          </h4>
+          <h3>
+
             </h4>
-            <h3>
-        
-                </h4>
-                <div class="progressContainer">
-                  <div class="progBar"></div>
-                </div>
-          </div>
-          <audio src="<%= tracks[0] %>" id="audio"></audio> 
-
-          <div class="navigation">
-            <button id="prev" class="action-btn prevBtn"><i class="fa-sharp fa-solid fa-backward"
-                style="color: #c5d930;"></i></button>
-            <button id="play" class="action-btn playBtn"><i class="fa-solid fa-play"
-                style="color: #c5d930;"></i></button>
-            <button id="next" class="action-btn nextBtn"><i class="fa-sharp fa-solid fa-forward"
-                style="color: #c5d930;"></i></button>
-          </div>
+            <div class="progressContainer">
+              <div class="progBar"></div>
+            </div>
         </div>
+        <audio src="<%= tracks[0] %>" id="audio"></audio>
+
+        <div class="navigation">
+          <button id="prev" class="action-btn prevBtn"><i class="fa-sharp fa-solid fa-backward"
+              style="color: #c5d930;"></i></button>
+          <button id="play" class="action-btn playBtn"><i class="fa-solid fa-play" style="color: #c5d930;"></i></button>
+          <button id="next" class="action-btn nextBtn"><i class="fa-sharp fa-solid fa-forward"
+              style="color: #c5d930;"></i></button>
+        </div>
+      </div>
 
 
-  
 
 
-          <!-- scripts -->
-          <script type="importmap">
+
+      <!-- scripts -->
+      <script type="importmap">
       {
         "imports": {
           "three": "https://unpkg.com/three@0.138.3/build/three.module.js"
         }
       }
     </script>
- 
-    <script src="/radio.js" type="module"></script>
-    <script src="/singlePlayer.js" type="module"></script>
+
+      <script src="/radio.js" type="module"></script>
+      <script src="/singlePlayer.js" type="module"></script>
   </body>
 
   </html>

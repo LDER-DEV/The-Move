@@ -8,7 +8,7 @@ const radioController = require("../controllers/radio");
 const profileController = require("../controllers/profile");
 const { ensureAuth, ensureGuest } = require("../middleware/auth");
 
-//Main Routes - simplified for now
+// Main Routes - simplified for now
 router.get("/", homeController.getIndex);
 router.get("/radio", radioController.getRadio);
 router.get("/signup", authController.getSignup);
@@ -25,5 +25,7 @@ router.put("/editBanner/:id", upload.single("imageFiles"), profileController.edi
 router.put("/editMove/:id", profileController.editMove);
 router.put("/editBio/:id", profileController.editBio);
 
+// Add a new route for handling the "/tracks" endpoint
+router.get("/tracks", radioController.getTracks);
 
 module.exports = router;

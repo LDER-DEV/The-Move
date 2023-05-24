@@ -67,3 +67,20 @@ forwardBtn.addEventListener('click' ,forward)
 
 audio.addEventListener('timeupdate', updateProgress)
 
+// Fetch the songs from the server
+function trackFetch(){
+  fetch('/tracks')
+  .then((response) => response.json())
+  .then((data) => {
+    const songUrls = data.map((track) => track.song);
+    const trackNames = data.map((track) => track.trackName);
+    const uploadedBy = data.map((track) => track.uploadedBy);
+ 
+    console.log(songUrls);
+    console.log(trackNames);
+    console.log(uploadedBy);
+  })
+  .catch((error) => console.error(error));
+}
+
+trackFetch()
