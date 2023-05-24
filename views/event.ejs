@@ -3,6 +3,9 @@
     <div class="container">
       <div class="row justify-content-center mt-5">
         <div class="col-6">
+          <h1>
+            <%= moves.eventTitle %>
+          </h1>
 
           <% if(moves.ApprovalStatus===false ){%>
             <h2 class="status">Awaiting Approval</h2>
@@ -13,31 +16,68 @@
                 <img class="img-fluid" src="<%= moves.image%>" />
                 <div class="row justify-content-between">
 
-                  <% if(user.userName === moves.venueName ){%>
-                  <form class="col-1" action="/moves/approveMove/<%= moves.id %>?_method=PUT" method="POST">
-                    <button class="btn btn-primary " type="submit">Approve</button>
-                  </form>
-                  <form class="col-1" action="/moves/denyMove/<%= moves.id %>?_method=PUT" method="POST">
-                    <button class="btn btn-primary " type="submit">Deny</button>
-                  </form>
-                  <% }else{ %>
-                    <%}%>
-                  <!-- <h3 class="col-3">Likes: <%= moves.likes %>
-          </h3> -->
-                  <%if(moves.user==user.id){ %>
-                    <form action="/moves/deletePost/<%= moves.id %>?_method=DELETE" method="POST" class="col-3">
-                      <button class="btn btn-primary " type="submit">Delete</button>
+                  <% if(user.userName===moves.venueName ){%>
+                    <form class="col-1" action="/moves/approveMove/<%= moves.id %>?_method=PUT" method="POST">
+                      <button class="btn btn-primary " type="submit">Approve</button>
                     </form>
-                    
-                    <%}%>
+                    <form class="col-1" action="/moves/denyMove/<%= moves.id %>?_method=PUT" method="POST">
+                      <button class="btn btn-primary " type="submit">Deny</button>
+                    </form>
+                    <section class="comments">
+                      <h1>Venue Comments</h1>
+                      <% for (let i=0; i < comment.length; i++){ %>
+                        <a href="/profile/<%=comment[i].venueID%>"><span>
+                            <%=comment[i].userName%>
+                          </span></a>
+                        <p>
+                          <%=comment[i].comment%>
+                        </p>
+                    </section>
+
+                    <% }}else{ %>
+                      <%}%>
+
+                        <!-- <h3 class="col-3">Likes: <%= moves.likes %>
+          </h3> -->
+                        <%if(moves.artists.includes(user.userName)){ %>
+                          <form action="/moves/deletePost/<%= moves.id %>?_method=DELETE" method="POST" class="col-3">
+                            <button class="btn btn-primary " type="submit">Delete</button>
+                          </form>
+                          <section class="comments">
+                            <h1>Venue Comments</h1>
+                           
+                              <% for (let i=0; i < comment.length; i++){ %>
+                                <ul class="list-unstyled">
+                                <li>
+                                  <a href="/profile/<%=moves.user%>">
+                                    
+                                      <%=comment[i].userName%>
+                                    
+                                  </a>
+                                  <p>
+                                    <%=comment[i].comment%>
+                                  </p>
+                                </li>
+                              </ul>
+                          </section>
+
+                          <%}}%>
+                        
+                            <form action="/moves/comment/<%= moves.id %>" method="POST">
+                              <div class="mb-3">
+                                <label for="title" class="form-label">Please add any comments about the event</label>
+                                <input type="text" class="form-control" id="comment" name="comment"
+                                  placeholder="Any notes for the venue??">
+                                <button type="submit" class="btn btn-primary" value="Upload">Submit</button>
+                              </div>
+                            </form>
                 </div>
         </div>
 
         <div class="row-3 mt-5">
-          <h1>
-            <%= moves.eventTitle %>
-          </h1>
+
           <p>
+            Description:</br>
             <%= moves.description %>
           </p>
           <span> When: </span></br>
@@ -47,40 +87,43 @@
           <p>
             <%= moves.startTime %> - <%= moves.endTime %>
           </p>
-          <span> Where: </span>
+          <span> Where: </span></br>
           <a href="/profile/<%= moves.venueId %>"><span>
               <%= moves.venueName %>
             </span></a>
-            <h3>Featured Artists</h3>
-            <div class="artistContainer">
-          
+
+          <h1>Featured Artists</h1>
+          <div class="artistContainer">
+
 
             <% for (var i=0; i < artists.length; i++) { if (moves.artists.includes(artists[i].userName)) { %>
-          
-            
-                <a href="/profile/<%=artists[i]._id%>">
-                  <h4>
-                    <%=artists[i].userName%>
-                  </h4>
-           
-              
-                  <div class="imageContainer ">
-                    <img class="profileImage" src="<%=artists[i].profilePicture%>">
-                  </a>
-                
-              </div>
-              <% }}%>
-            </div>
-         
 
+
+              <a href="/profile/<%=artists[i]._id%>">
+                <h4>
+                  <%=artists[i].userName%>
+                </h4>
+
+
+                <div class="imageContainer ">
+                  <img class="profileImage" src="<%=artists[i].profilePicture%>">
+              </a>
+
+          </div>
+          <% }}%>
         </div>
 
 
 
-        <div class="col-6 mt-5">
-          <a class="btn btn-primary" href="/profile/<%=user.id%>">Return to Profile</a>
 
-        </div>
       </div>
 
-      <%- include('partials/footer') -%>
+
+
+      <div class="col-6 mt-5">
+        <a class="btn btn-primary" href="/profile/<%=user.id%>">Return to Profile</a>
+
+      </div>
+    </div>
+
+    <%- include('partials/footer') -%>

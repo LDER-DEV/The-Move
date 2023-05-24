@@ -23,6 +23,9 @@
         <li class="nav-item">
           <a class="nav-link btn btn-outline-light" href="/users">Artists</a>
         </li>
+           <li class="nav-item">
+          <a class="nav-link btn btn-outline-light" href="/logout">Logout</a>
+        </li>
       </ul>
     </div>
   </div>
@@ -33,11 +36,11 @@
     <div class="row justify-content-center mt-5">
       <ul class="row list-unstyled">
         <% for(var i=0; i < moves.length; i++){%>
-          <section class="bannerVenues">
-          <li class="col-6 justify-content-between mt-5">
-            <h2><%= moves[i].userName%></h2>
+          <h2><%= moves[i].eventTitle%></h2>
+          <section class="eventImageContainer">
+          <li>
             <a href="/moves/<%= moves[i]._id%>">
-              <img class="img-fluid profileBanner" src="<%= moves[i].image%>">
+              <img class="img-fluid eventImage" src="<%= moves[i].image%>">
             </a>
           </li>
         </section>

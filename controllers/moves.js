@@ -1,6 +1,7 @@
 const cloudinary = require("../middleware/cloudinary");
 const Moves = require("../models/Moves");
-const Profile = require('../models/User')
+const Profile = require('../models/User');
+const Comments = require('../models/Comments');
 const Track = require('../models/Tracks');
 
 module.exports = {
@@ -28,7 +29,7 @@ module.exports = {
     try {
       const moves = await Moves.find().sort({ createdAt: "desc" }).lean();
       const venues = await Profile.find().sort({ createdAt: "desc" }).lean();
-      res.render("Moves.ejs", { moves: moves, venues:venues, user: req.user });
+      res.render("Moves.ejs", { moves: moves, venues:venues, user: req.user, });
     } catch (err) {
       console.log(err);
     }
@@ -38,7 +39,8 @@ module.exports = {
     try {
       const artists = await Profile.find().sort({ userName: 1 }).lean();
       const moves = await Moves.findById(req.params.id);
-      res.render("event.ejs", { moves: moves, user: req.user,artists: artists });
+      const comment = await Comments.find({moveID: req.params.id});
+      res.render("event.ejs", { moves: moves, user: req.user,artists: artists , comment: comment});
     } catch (err) {
       console.log(err);
     }
@@ -159,27 +161,16 @@ module.exports = {
  
       await Comments.create({
         comment: req.body.comment,
-        madeBy: req.user.id,
-        postID: req.params.id
+        venueID: req.user.id,
+        moveID: req.params.id,
+        userName: req.user.userName
       });
       console.log("comment has been added!");
-      res.redirect(`/event/${req.params.id}`);
+      res.redirect(`/moves/${req.params.id}`);
     } catch (err) {
       console.log(err);
     }
   },
-   deleteComment: async (req, res) => {
-    try {
-  
-      // Delete post from db
-      await Comments.remove({ _id: req.comments.comment });
-      console.log(req.comments.comment)
-      console.log("Deleted Post");
-      res.redirect(`/event/${req.params.id}`);
-    } catch (err) {
-      res.redirect(`/event/${req.params.id}`);
-    }
-  },
-
+   
 
 };

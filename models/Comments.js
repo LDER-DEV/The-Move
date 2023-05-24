@@ -5,13 +5,17 @@ const CommentsSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  madeBy: {
+  venueID: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
   },
-  postID: {
+  moveID: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "Post",
+    ref: "Moves",
+  },
+  userName: {
+    type: String,
+    ref: "Moves",
   },
 });
 

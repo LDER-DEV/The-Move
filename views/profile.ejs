@@ -21,7 +21,7 @@
             </button>
 
             <%}%>
-              <div class="">
+              <div >
                 <!-- profile image and bio -->
                 <div class="col mt-5">
 
@@ -157,10 +157,11 @@
                             <section class=' moveContainer'>
 
                               <li class="row-6 mt-5 ">
-
+                                <div class="eventImageContainer">
                                 <a class="event" href="/moves/<%= moves[i]._id%>">
                                   <img class="img-fluid eventImage" src="<%= moves[i].image%>">
                                 </a>
+                              </div>
                                 <button type="button" class="editMove  btn btn-primary" data-toggle="modal"
                                   data-target="#editModal">
                                   <i class="fa-solid fa-gear " style="color: #000000;"></i>
@@ -169,18 +170,19 @@
                                   <%= moves[i].eventTitle %>
                                 </h1>
 
-                                <span> When: </span></br>
-                                <span>
-                                  <%= moves[i].startDate.toString().substring(0,15) %>
-                                </span>
+                                <h2> When: </h2></br>
+                                <p>
+                                Date:  <%= moves[i].startDate.toString().substring(0,15) %>
+                                </p>
+                                
                                 <p class="startTime">
-                                  <%= moves[i].startTime %>
+                                 Start Time: <%= moves[i].startTime %>
                                 </p>
                                 <p class="endTime">
-                                  <%= moves[i].endTime %>
+                                End Time:  <%= moves[i].endTime %>
                                 </p>
                                 <p>
-                                  <%=moves[i].artists%>
+                                Artist(s):  <%=moves[i].artists%>
                                 </p>
                                 <span> Where: </span></br>
                                 <a href="/profile/<%= moves[i].venueId %>"><span>

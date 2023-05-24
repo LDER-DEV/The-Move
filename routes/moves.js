@@ -19,8 +19,6 @@ router.put("/denyMove/:id", movesController.denyMove);
 
 router.delete("/deletePost/:id", movesController.deletePost);
 
-router.delete("/deleteComment/:id", movesController.deleteComment);
-
 router.delete("/deleteTrack/", movesController.deleteTrack);
 
 

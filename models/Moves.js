@@ -54,6 +54,7 @@ const MovesSchema = new mongoose.Schema({
     type: Boolean,
     default: false
   },
+ 
 });
 
 module.exports = mongoose.model("Moves", MovesSchema);
