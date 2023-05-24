@@ -355,20 +355,21 @@ background: rgba(0, 0, 0, 0.415);
 }
 .radio-container{
   display:block;
-  z-index: 10;
+  z-index: 1;
   padding:20px 30px;
   height:50px;
   background-color:rgba(0, 0, 0, 0.537);
   border-radius:15px;
   box-shadow:0 20px 20px 0 rgba(117, 125, 33, 0.174);
   color:white;
-  transform: translateY(100%);
+  transform: translateY(0%);
 }
 .player-container.play .track-info{
   opacity:1;
   transform: translateY(100%);
 }
 .playBtn{
+
   margin:15px;
 }
 .radio-container.play .track-info{
@@ -381,10 +382,18 @@ background: rgba(0, 0, 0, 0.415);
   justify-content: center;
   z-index: 1;
 }
+.navigationRadio{
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+  transform: translateY(-25px);
+}
 .action-btn{
   background-color:black;
   border:none;
-  font-size:20px;
+  width:40px;
+  font-size:40px;
   cursor:pointer;
   
 }
