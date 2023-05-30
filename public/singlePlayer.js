@@ -60,7 +60,6 @@ fetch('/tracks')
     console.log(trackNames);
     console.log(uploadedBy);
     let trackIndex = 3
-    trackLoad(trackIndex)
 
     function trackLoad(trackIndex) {
       trackTitle.innerText = trackNames[trackIndex]
@@ -68,11 +67,12 @@ fetch('/tracks')
       audio.src = trackUrls[trackIndex]
 
     }
-
+    trackLoad(trackIndex)
+    
     function back() {
       trackIndex--
-      if(trackIndex < 0){
-        trackIndex = trackUrls.length-1
+      if (trackIndex < 0) {
+        trackIndex = trackUrls.length - 1
       }
       trackLoad(trackIndex)
       playSong()
@@ -80,7 +80,7 @@ fetch('/tracks')
 
     function forward() {
       trackIndex++
-      if(trackIndex > trackUrls.length-1){
+      if (trackIndex > trackUrls.length - 1) {
         trackIndex = 0
       }
       trackLoad(trackIndex)
@@ -94,4 +94,3 @@ fetch('/tracks')
 
 
 
-  

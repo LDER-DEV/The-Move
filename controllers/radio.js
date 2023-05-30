@@ -23,7 +23,7 @@ module.exports = {
   },
 
   // Add a new route to handle the "/tracks" endpoint
- getTracks: async (req, res) => {
+  getTracks: async (req, res) => {
     try {
       const tracks = await Track.find({});
       const formattedTracks = tracks.map((track) => {
