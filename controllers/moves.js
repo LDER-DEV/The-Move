@@ -11,7 +11,7 @@ module.exports = {
 
       const profile = await Profile.findById(req.params.id);
       const tracks = await Track.find({ tracks: req.tracks });
-      res.render("profile.ejs", { moves: moves, user: req.user, profile: profile, tracks: tracks  });
+      res.render("profile.ejs", { moves: moves, user: req.user, profile: profile, tracks: tracks });
       console.log()
     } catch (err) {
       console.log(err);
@@ -29,7 +29,7 @@ module.exports = {
     try {
       const moves = await Moves.find().sort({ createdAt: "desc" }).lean();
       const venues = await Profile.find().sort({ createdAt: "desc" }).lean();
-      res.render("Moves.ejs", { moves: moves, venues:venues, user: req.user, });
+      res.render("Moves.ejs", { moves: moves, venues: venues, user: req.user, });
     } catch (err) {
       console.log(err);
     }
@@ -39,8 +39,8 @@ module.exports = {
     try {
       const artists = await Profile.find().sort({ userName: 1 }).lean();
       const moves = await Moves.findById(req.params.id);
-      const comment = await Comments.find({moveID: req.params.id});
-      res.render("event.ejs", { moves: moves, user: req.user,artists: artists , comment: comment});
+      const comment = await Comments.find({ moveID: req.params.id });
+      res.render("event.ejs", { moves: moves, user: req.user, artists: artists, comment: comment });
     } catch (err) {
       console.log(err);
     }
@@ -57,7 +57,7 @@ module.exports = {
   createPost: async (req, res) => {
     try {
       // Upload image to cloudinary
-      const result = await cloudinary.uploader.upload(req.file.path, {resource_type: "auto",  });
+      const result = await cloudinary.uploader.upload(req.file.path, { resource_type: "auto", });
 
       await Moves.create({
         eventTitle: req.body.eventTitle,
@@ -82,7 +82,7 @@ module.exports = {
   createTrack: async (req, res) => {
     try {
       // Upload image to cloudinary
-      const result = await cloudinary.uploader.upload(req.file.path, {resource_type: "auto",  });
+      const result = await cloudinary.uploader.upload(req.file.path, { resource_type: "auto", });
 
       await Track.create({
         trackName: req.body.trackName,
@@ -90,7 +90,7 @@ module.exports = {
         cloudinaryId: result.public_id,
         uploadedBy: req.body.uploadedBy,
       });
-      console.log("Post has been added!" ,req.user._id);
+      console.log("Post has been added!", req.user._id);
       res.redirect(`/profile/${req.user._id}`);
     } catch (err) {
       console.log(err);
@@ -100,13 +100,13 @@ module.exports = {
     try {
       // Find track by id
       const track = await Track.findById(req.body.id);
-  
+
       // Delete image from cloudinary
       await cloudinary.uploader.destroy(track.cloudinaryId);
-  
+
       // Delete track from db
       await Track.deleteOne({ _id: req.body.id });
-  
+
       console.log("Deleted Track");
       res.redirect(`/profile/${req.user.id}`);
     } catch (err) {
@@ -158,7 +158,7 @@ module.exports = {
   },
   commentPost: async (req, res) => {
     try {
- 
+
       await Comments.create({
         comment: req.body.comment,
         venueID: req.user.id,
@@ -171,6 +171,29 @@ module.exports = {
       console.log(err);
     }
   },
-   
+  editMove: async (req, res) => {
+    try {
+
+      console.log(req.user._id)
+      await Moves.findOneAndUpdate(
+        { user: req.user._id },
+        {
+          $set: {
+            eventTitle: req.body.eventTitle,
+            description: req.body.description,
+            artists: req.body.artists,
+            startDate: req.body.startDate,
+            startTime: req.body.startTime,
+            endDate: req.body.endDate,
+            endTime: req.body.endTime,
+          },
+        }
+      );
+      console.log("profile updated");
+      res.redirect(`/profile/${req.user.id}`);
+    } catch (err) {
+      console.log(err);
+    }
+  },
 
 };

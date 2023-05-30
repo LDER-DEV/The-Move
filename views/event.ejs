@@ -40,19 +40,23 @@
                         <!-- <h3 class="col-3">Likes: <%= moves.likes %>
           </h3> -->
                         <%if(moves.artists.includes(user.userName)){ %>
+                          <button type="button" class="editMove  btn btn-primary" data-toggle="modal"
+                            data-target="#editModal">
+                            <i class="fa-solid fa-gear " style="color: #000000;"></i> Edit
+                          </button>
                           <form action="/moves/deletePost/<%= moves.id %>?_method=DELETE" method="POST" class="col-3">
                             <button class="btn btn-primary " type="submit">Delete</button>
                           </form>
                           <section class="comments">
                             <h1>Venue Comments</h1>
-                           
-                              <% for (let i=0; i < comment.length; i++){ %>
-                                <ul class="list-unstyled">
+
+                            <% for (let i=0; i < comment.length; i++){ %>
+                              <ul class="list-unstyled">
                                 <li>
                                   <a href="/profile/<%=moves.user%>">
-                                    
-                                      <%=comment[i].userName%>
-                                    
+
+                                    <%=comment[i].userName%>
+
                                   </a>
                                   <p>
                                     <%=comment[i].comment%>
@@ -62,7 +66,7 @@
                           </section>
 
                           <%}}%>
-                        
+
                             <form action="/moves/comment/<%= moves.id %>" method="POST">
                               <div class="mb-3">
                                 <label for="title" class="form-label">Please add any comments about the event</label>
@@ -125,5 +129,71 @@
 
       </div>
     </div>
+    <!-- event edit modal start -->
+    <div class="modal fade" id="moveModal" tabindex="-1" role="dialog">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="ModalTitle">Edit Move</h5>
+
+          </div>
+          <div class="modal-body ">
+
+            <!-- update form starts -->
+
+            <form action="/moves/editMove/<%= moves.id%>?_method=PUT" method="POST" id="eventEdit">
+
+              <div class="mb-3">
+                <label for="eventTitle" class="form-label">Title</label>
+                <input type="text" class="form-control" id="eventTitle" name="eventTitle" value="<%=moves.eventTitle%>"
+                  required>
+              </div>
+
+
+              <div class="mb-3">
+                <label for="description" class="form-label">Event Description</label>
+                <textarea class="form-control" id="description" name="description"><%=moves.description%></textarea>
+              </div>
+              <div class="mb-3">
+                <label for="artists" class="form-label">Featured Artists</label>
+                <input type="text" class="form-control" id="artists" name="artists" value="<%=moves.artists%>" required>
+              </div>
+
+              <div class="mb-3">
+                <label for="startDateTime" class="form-label">Event Start Date and
+                  Time</label>
+                <input tabindex='0' type="Date" class="form-control" id="startDate" name="startDate"
+                  value="<%= moves.startDate.toString().substring(0,15) %>">
+                <input type="time" class="form-control" id="startTime" name="startTime" value="<%=moves.startTime%>">
+              </div>
+
+              <div class="mb-3">
+                <label for="endDateTime" class="form-label">Event End Date and Time</label>
+                <input type="Date" class="form-control" id="endDate" name="endDate"
+                  value="<%= moves.endDate.toString().substring(0,15) %>">
+                <input type="time" class="form-control" id="endTime" name="endTime" value="<%=moves.endTime%>">
+              </div>
+
+            <button type="submit" class="btn btn-primary" value="Upload">Submit</button>
+          </form>
+            <!-- update form ends -->
+          </div>
+          <div class="modal-footer">
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- modal end -->
+    <script>
+      const editMove = document.querySelector('.editMove');
+
+      editMove.addEventListener('click', () => {
+        const moveModal = document.getElementById('moveModal');
+        const modalObj = new bootstrap.Modal(moveModal);
+        modalObj.show();
+
+      })
+
+    </script>
 
     <%- include('partials/footer') -%>

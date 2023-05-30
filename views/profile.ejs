@@ -162,10 +162,10 @@
                                   <img class="img-fluid eventImage" src="<%= moves[i].image%>">
                                 </a>
                               </div>
-                                <button type="button" class="editMove  btn btn-primary" data-toggle="modal"
+                                <!-- <button type="button" class="editMove  btn btn-primary" data-toggle="modal"
                                   data-target="#editModal">
                                   <i class="fa-solid fa-gear " style="color: #000000;"></i> Edit
-                                </button>
+                                </button> -->
                                 <h1>
                                   <%= moves[i].eventTitle %>
                                 </h1>
@@ -190,18 +190,18 @@
                               </li></a>
 
                               <!-- event edit modal start -->
-                              <div class="modal fade" id="moveModal" tabindex="-1" role="dialog">
+                              <!-- <div class="modal fade" id="moveModal" tabindex="-1" role="dialog">
                                 <div class="modal-dialog modal-dialog-centered" role="document">
                                   <div class="modal-content">
                                     <div class="modal-header">
                                       <h5 class="modal-title" id="ModalTitle">Edit Move</h5>
 
                                     </div>
-                                    <div class="modal-body ">
+                                    <div class="modal-body "> -->
 
                                       <!-- update form starts -->
 
-                                      <form action="/editMove/<%= moves[i].id%>?_method=PUT"
+                                      <!-- <form action="/editMove/<%= moves[i].id%>?_method=PUT"
                                     method="POST" id="eventEdit">
 
                                         <div class="mb-3">
@@ -225,28 +225,29 @@
                                         <div class="mb-3">
                                           <label for="startDateTime" class="form-label">Event Start Date and
                                             Time</label>
-                                          <input type="date" class="form-control" id="startDate" name="startDate"
-                                            value="<%= moves[i].startDate.toString().substring(0,15) %>" required>
+                                          <input tabindex ='0' type="Date" class="form-control" id="startDate" name="startDate"
+                                            value="<%= moves[i].startDate.toString().substring(0,15) %>" >
                                           <input type="time" class="form-control" id="startTime" name="startTime"
-                                            value="<%=moves[i].startTime%>" required>
+                                            value="<%=moves[i].startTime%>" >
                                         </div>
 
                                         <div class="mb-3">
                                           <label for="endDateTime" class="form-label">Event End Date and Time</label>
-                                          <input type="date" class="form-control" id="endDate" name="endDate"
-                                            value="<%= moves[i].endDate.toString().substring(0,15) %>" required>
+                                          <input type="Date" class="form-control" id="endDate" name="endDate"
+                                            value="<%= moves[i].endDate.toString().substring(0,15) %>" >
                                           <input type="time" class="form-control" id="endTime" name="endTime"
-                                            value="<%=moves[i].endTime%>" required>
+                                            value="<%=moves[i].endTime%>" >
                                         </div>
+                                      </form>
 
-                                        <button type="submit" class="btn btn-primary" value="Upload">Submit</button>
+                                        <button type="submit" class="btn btn-primary" value="Upload">Submit</button> -->
                                         <!-- update form ends -->
-                                    </div>
+                                    <!-- </div>
                                     <div class="modal-footer">
                                     </div>
                                   </div>
                                 </div>
-                              </div>
+                              </div> -->
                               <!-- modal end -->
 
                               <% if(moves[i].ApprovalStatus===false ){%>
@@ -255,7 +256,7 @@
                                   <span class="status">Your Event is Approved!</span>
                                   <% } %>
 
-                                    <% }}%>
+                           <% }}%>
 
                             </section>
 

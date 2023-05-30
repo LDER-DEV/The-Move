@@ -17,9 +17,12 @@ router.put("/approveMove/:id", movesController.approveMove);
 
 router.put("/denyMove/:id", movesController.denyMove);
 
+router.put("/editMove/:id", movesController.editMove);
+
 router.delete("/deletePost/:id", movesController.deletePost);
 
 router.delete("/deleteTrack/", movesController.deleteTrack);
+
 
 
 module.exports = router;
