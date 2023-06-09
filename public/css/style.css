@@ -39,7 +39,10 @@ h1{
   display:flex;
   width:25%;
 }
-
+.letsMakeMoves{
+border:2px solid white;
+text-align: center;
+}
 /* testing css */
 .profileBg {
   height: 100%;
